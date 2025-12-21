@@ -1,0 +1,4 @@
+Task_Type,Total_Samples,Percentage,Train_Samples,Test_Samples,Good_Quality,Good_Quality_Pct,Evident_Conflict_Samples,Evident_Conflict_Pct,Baseless_Info_Samples,Baseless_Info_Pct,Any_Hallucination_Samples,Any_Hallucination_Pct,Avg_Query_Length,Avg_Context_Length,Avg_Output_Length,Avg_Temperature
+Summary,5658,31.8,4758,900,5655,99.95,741,13.1,1076,19.02,1686,29.8,45.5,3325.7,693.3,0.841
+Data2txt,6198,34.84,5298,900,6195,99.95,2741,44.22,3024,48.79,4254,68.64,295.0,2448.0,999.4,0.75
+QA,5934,33.36,5034,900,5767,97.19,376,6.34,1483,24.99,1724,29.05,37.4,1315.6,686.5,0.791

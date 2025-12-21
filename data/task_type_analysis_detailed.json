@@ -1,0 +1,258 @@
+{
+  "Summary": {
+    "basic_statistics": {
+      "total_samples": 5658,
+      "percentage": 31.804384485666105,
+      "train_samples": 4758,
+      "test_samples": 900
+    },
+    "quality_distribution": {
+      "counts": {
+        "good": 5655,
+        "truncated": 2,
+        "incorrect_refusal": 1
+      },
+      "percentages": {
+        "good": 99.95,
+        "truncated": 0.04,
+        "incorrect_refusal": 0.02
+      }
+    },
+    "model_distribution": {
+      "counts": {
+        "gpt-4-0613": 943,
+        "gpt-3.5-turbo-0613": 943,
+        "mistral-7B-instruct": 943,
+        "llama-2-7b-chat": 943,
+        "llama-2-13b-chat": 943,
+        "llama-2-70b-chat": 943
+      },
+      "percentages": {
+        "gpt-4-0613": 16.67,
+        "gpt-3.5-turbo-0613": 16.67,
+        "mistral-7B-instruct": 16.67,
+        "llama-2-7b-chat": 16.67,
+        "llama-2-13b-chat": 16.67,
+        "llama-2-70b-chat": 16.67
+      }
+    },
+    "hallucination_statistics": {
+      "evident_conflict": {
+        "samples_with_conflict": 741,
+        "percentage_with_conflict": 13.096500530222693,
+        "total_conflicts": 741,
+        "mean_per_sample": 0.13096500530222693
+      },
+      "baseless_info": {
+        "samples_with_baseless": 1076,
+        "percentage_with_baseless": 19.01732060798869,
+        "total_baseless": 1076,
+        "mean_per_sample": 0.1901732060798869
+      },
+      "any_hallucination": {
+        "samples_with_any": 1686,
+        "percentage_with_any": 29.798515376458113
+      }
+    },
+    "text_length_statistics": {
+      "query_length": {
+        "mean": 45.54718981972428,
+        "median": 46.0,
+        "min": 45,
+        "max": 46,
+        "std": 0.49781213353973613
+      },
+      "context_length": {
+        "mean": 3325.745493107105,
+        "median": 2553.0,
+        "min": 615,
+        "max": 10672,
+        "std": 1909.7260931919584
+      },
+      "output_length": {
+        "mean": 693.3032873806999,
+        "median": 618.5,
+        "min": 40,
+        "max": 4007,
+        "std": 316.4464771667315
+      }
+    },
+    "temperature_statistics": {
+      "mean": 0.841291069984436,
+      "median": 0.7749999761581421,
+      "min": 0.699999988079071,
+      "max": 1.0,
+      "std": 0.14160732924938202
+    }
+  },
+  "Data2txt": {
+    "basic_statistics": {
+      "total_samples": 6198,
+      "percentage": 34.839797639123105,
+      "train_samples": 5298,
+      "test_samples": 900
+    },
+    "quality_distribution": {
+      "counts": {
+        "good": 6195,
+        "truncated": 3
+      },
+      "percentages": {
+        "good": 99.95,
+        "truncated": 0.05
+      }
+    },
+    "model_distribution": {
+      "counts": {
+        "gpt-4-0613": 1033,
+        "gpt-3.5-turbo-0613": 1033,
+        "mistral-7B-instruct": 1033,
+        "llama-2-7b-chat": 1033,
+        "llama-2-13b-chat": 1033,
+        "llama-2-70b-chat": 1033
+      },
+      "percentages": {
+        "gpt-4-0613": 16.67,
+        "gpt-3.5-turbo-0613": 16.67,
+        "mistral-7B-instruct": 16.67,
+        "llama-2-7b-chat": 16.67,
+        "llama-2-13b-chat": 16.67,
+        "llama-2-70b-chat": 16.67
+      }
+    },
+    "hallucination_statistics": {
+      "evident_conflict": {
+        "samples_with_conflict": 2741,
+        "percentage_with_conflict": 44.223943207486286,
+        "total_conflicts": 2741,
+        "mean_per_sample": 0.4422394320748629
+      },
+      "baseless_info": {
+        "samples_with_baseless": 3024,
+        "percentage_with_baseless": 48.78993223620523,
+        "total_baseless": 3024,
+        "mean_per_sample": 0.4878993223620523
+      },
+      "any_hallucination": {
+        "samples_with_any": 4254,
+        "percentage_with_any": 68.6350435624395
+      }
+    },
+    "text_length_statistics": {
+      "query_length": {
+        "mean": 295.0,
+        "median": 295.0,
+        "min": 295,
+        "max": 295,
+        "std": 0.0
+      },
+      "context_length": {
+        "mean": 2447.994191674734,
+        "median": 2262.0,
+        "min": 995,
+        "max": 7638,
+        "std": 816.2689947408255
+      },
+      "output_length": {
+        "mean": 999.3573733462407,
+        "median": 914.0,
+        "min": 218,
+        "max": 2053,
+        "std": 290.8113136966327
+      }
+    },
+    "temperature_statistics": {
+      "mean": 0.7497215867042542,
+      "median": 0.699999988079071,
+      "min": 0.699999988079071,
+      "max": 1.0,
+      "std": 0.09063935279846191
+    }
+  },
+  "QA": {
+    "basic_statistics": {
+      "total_samples": 5934,
+      "percentage": 33.35581787521079,
+      "train_samples": 5034,
+      "test_samples": 900
+    },
+    "quality_distribution": {
+      "counts": {
+        "good": 5767,
+        "incorrect_refusal": 143,
+        "truncated": 24
+      },
+      "percentages": {
+        "good": 97.19,
+        "incorrect_refusal": 2.41,
+        "truncated": 0.4
+      }
+    },
+    "model_distribution": {
+      "counts": {
+        "gpt-4-0613": 989,
+        "gpt-3.5-turbo-0613": 989,
+        "mistral-7B-instruct": 989,
+        "llama-2-7b-chat": 989,
+        "llama-2-13b-chat": 989,
+        "llama-2-70b-chat": 989
+      },
+      "percentages": {
+        "gpt-4-0613": 16.67,
+        "gpt-3.5-turbo-0613": 16.67,
+        "mistral-7B-instruct": 16.67,
+        "llama-2-7b-chat": 16.67,
+        "llama-2-13b-chat": 16.67,
+        "llama-2-70b-chat": 16.67
+      }
+    },
+    "hallucination_statistics": {
+      "evident_conflict": {
+        "samples_with_conflict": 376,
+        "percentage_with_conflict": 6.336366700370745,
+        "total_conflicts": 376,
+        "mean_per_sample": 0.06336366700370745
+      },
+      "baseless_info": {
+        "samples_with_baseless": 1483,
+        "percentage_with_baseless": 24.991573980451633,
+        "total_baseless": 1483,
+        "mean_per_sample": 0.24991573980451634
+      },
+      "any_hallucination": {
+        "samples_with_any": 1724,
+        "percentage_with_any": 29.052915402763734
+      }
+    },
+    "text_length_statistics": {
+      "query_length": {
+        "mean": 37.411526794742166,
+        "median": 35.0,
+        "min": 10,
+        "max": 117,
+        "std": 13.193915081354085
+      },
+      "context_length": {
+        "mean": 1315.582406471183,
+        "median": 1196.0,
+        "min": 427,
+        "max": 2772,
+        "std": 440.22884798502173
+      },
+      "output_length": {
+        "mean": 686.5379170879677,
+        "median": 646.0,
+        "min": 7,
+        "max": 2338,
+        "std": 352.671549469093
+      }
+    },
+    "temperature_statistics": {
+      "mean": 0.7914812564849854,
+      "median": 0.699999988079071,
+      "min": 0.699999988079071,
+      "max": 1.0,
+      "std": 0.11269449442625046
+    }
+  }
+}

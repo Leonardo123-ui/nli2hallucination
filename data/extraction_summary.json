@@ -1,0 +1,11 @@
+{
+  "extraction_summary": {
+    "total_task_types": 3,
+    "task_type_counts": {
+      "Summary": 5658,
+      "Data2txt": 6198,
+      "QA": 5934
+    },
+    "files_generated": []
+  }
+}

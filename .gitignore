@@ -1,2 +1,5 @@
 /models
 .cache
+/data/cdcl-nli/checkpoints
+/data/cdcl-nli/data
+/data/bert-classifier/models

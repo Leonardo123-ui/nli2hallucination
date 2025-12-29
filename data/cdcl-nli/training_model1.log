@@ -1,0 +1,509 @@
+(rst) yuanmengying@AuroraStation:/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli$ CUDA_VISIBLE_DEVICES=0 python train.py            
+2025-12-25 02:54:16.812136: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:479] Unable to register cuFFT factory: Attempting to
+ register factory for plugin cuFFT when one has already been registered                                                                   
+2025-12-25 02:54:16.842087: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:10575] Unable to register cuDNN factory: Attempting 
+to register factory for plugin cuDNN when one has already been registered                                                                 
+2025-12-25 02:54:16.842138: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1442] Unable to register cuBLAS factory: Attempting
+ to register factory for plugin cuBLAS when one has already been registered                                                               
+2025-12-25 02:54:16.861120: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU 
+instructions in performance-critical operations.                                                                                          
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.      
+2025-12-25 02:54:17.858767: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT               
+[2025-12-25 02:54:18,475] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)                   
+2025-12-25 02:54:20,196 - INFO - Using device: cuda                                                                                       
+2025-12-25 02:54:20,197 - INFO - Processing train data                                                                                    
+2025-12-25 02:54:20,197 - INFO - Processing test data                                                                                     
+2025-12-25 02:55:18,801 - INFO - Loaded graph pairs from /mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/train/grap
+h_pairs_batch_0.pkl                                                                                                                       
+2025-12-25 02:55:28,576 - INFO - Loaded graph pairs from /mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/test/graph
+_pairs_batch_0.pkl                                                                                                                        
+476 90                                                                                                                                    
+num_node_types: 20                                                                                                                        
+2025-12-25 02:55:41,076 - INFO - Total training steps: 33600                                                                              
+2025-12-25 02:55:41,076 - INFO - Total warmup steps: 3360                                                                                 
+2025-12-25 02:55:41,076 - INFO - Starting train  ==  classification task...                                                               
+2025-12-25 02:55:41,076 - INFO - Epoch 0 starting                                                                                         
+Epoch 1 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 02:55:42,328 - INFO - Total gradient norm before optimizer.step(): 0.287496                                                    
+Epoch 1 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [10:48<00:00,  1.36s/it, cls_loss=0.5847]
+end of one epoch,  steps :  476                                                                                                           
+2025-12-25 03:06:29,562 - INFO - Epoch 0 finished                                                                                         
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.649211793950125})                                                            
+2025-12-25 03:06:29,563 - INFO - Current learning rate: 1.42e-06                                                                          
+2025-12-25 03:06:29,580 - INFO - First model parameter norm: 4.472136                                                                     
+2025-12-25 03:07:31,612 - INFO - Epoch 0 - Prediction distribution: {0: 900}                                                              
+2025-12-25 03:07:31,612 - INFO - Epoch 0 - Label distribution: {0: 696, 1: 204}                                                           
+2025-12-25 03:07:31,767 - INFO - Epoch 0 (classification)                                                                                 
+Losses:                                                                                                                                   
+  cls_loss: 0.6492                                                                                                                        
+Evaluation Metrics:                                                                                                                       
+  cls_loss: 0.5699                                                                                                                        
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 03:07:37,813 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 03:07:37,814 - INFO - New best classification model saved with metric: 0.4361
+2025-12-25 03:07:37,814 - INFO - Epoch 1 starting
+Epoch 1 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 03:07:38,742 - INFO - Total gradient norm before optimizer.step(): 0.547518
+Epoch 1 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:22<00:00,  1.56s/it, cls_loss=0.6717]
+end of one epoch,  steps :  476
+2025-12-25 03:20:00,026 - INFO - Epoch 1 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.621547355433973})
+2025-12-25 03:20:00,027 - INFO - Current learning rate: 2.83e-06
+2025-12-25 03:20:00,043 - INFO - First model parameter norm: 4.472136 
+2025-12-25 03:21:01,405 - INFO - Epoch 1 - Prediction distribution: {0: 900}
+2025-12-25 03:21:01,406 - INFO - Epoch 1 - Label distribution: {0: 696, 1: 204}
+2025-12-25 03:21:01,556 - INFO - Epoch 1 (classification)
+Losses:
+  cls_loss: 0.6215
+Evaluation Metrics:
+  cls_loss: 0.5524
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 03:21:01,557 - INFO - Epoch 2 starting
+Epoch 2 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 03:21:03,608 - INFO - Total gradient norm before optimizer.step(): 0.874868
+Epoch 2 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:24<00:00,  1.56s/it, cls_loss=0.6612]
+end of one epoch,  steps :  476
+2025-12-25 03:33:26,333 - INFO - Epoch 2 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.620849378031342})
+2025-12-25 03:33:26,333 - INFO - Current learning rate: 4.25e-06
+2025-12-25 03:33:26,348 - INFO - First model parameter norm: 4.472136 
+2025-12-25 03:34:28,073 - INFO - Epoch 2 - Prediction distribution: {0: 900}
+2025-12-25 03:34:28,073 - INFO - Epoch 2 - Label distribution: {0: 696, 1: 204}
+2025-12-25 03:34:28,249 - INFO - Epoch 2 (classification)
+Losses:
+  cls_loss: 0.6208
+Evaluation Metrics:
+  cls_loss: 0.5479
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 03:34:28,250 - INFO - Epoch 3 starting                                                                                         
+Epoch 3 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 03:34:29,944 - INFO - Total gradient norm before optimizer.step(): 0.874036
+Epoch 3 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:26<00:00,  1.57s/it, cls_loss=0.4802]
+end of one epoch,  steps :  476
+2025-12-25 03:46:54,461 - INFO - Epoch 3 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6205255401109447})
+2025-12-25 03:46:54,462 - INFO - Current learning rate: 5.67e-06
+2025-12-25 03:46:54,475 - INFO - First model parameter norm: 4.472136 
+2025-12-25 03:47:55,487 - INFO - Epoch 3 - Prediction distribution: {0: 900}
+2025-12-25 03:47:55,487 - INFO - Epoch 3 - Label distribution: {0: 696, 1: 204}
+2025-12-25 03:47:55,626 - INFO - Epoch 3 (classification)
+Losses:
+  cls_loss: 0.6205
+Evaluation Metrics:
+  cls_loss: 0.5584
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 03:47:55,626 - INFO - Epoch 4 starting
+Epoch 4 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 03:47:57,951 - INFO - Total gradient norm before optimizer.step(): 0.526035
+Epoch 4 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:29<00:00,  1.57s/it, cls_loss=0.8620]
+end of one epoch,  steps :  476
+2025-12-25 04:00:24,658 - INFO - Epoch 4 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6201685893059778})
+2025-12-25 04:00:24,659 - INFO - Current learning rate: 7.08e-06
+2025-12-25 04:00:24,674 - INFO - First model parameter norm: 4.472136 
+2025-12-25 04:01:27,533 - INFO - Epoch 4 - Prediction distribution: {0: 900}
+2025-12-25 04:01:27,533 - INFO - Epoch 4 - Label distribution: {0: 696, 1: 204}
+2025-12-25 04:01:27,684 - INFO - Epoch 4 (classification)
+Losses:
+  cls_loss: 0.6202
+Evaluation Metrics:
+  cls_loss: 0.5484
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 04:01:27,684 - INFO - Epoch 5 starting
+Epoch 5 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 04:01:29,491 - INFO - Total gradient norm before optimizer.step(): 0.755485
+Epoch 5 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:30<00:00,  1.58s/it, cls_loss=0.5465]
+end of one epoch,  steps :  476
+2025-12-25 04:13:58,268 - INFO - Epoch 5 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6189186244326479})
+2025-12-25 04:13:58,269 - INFO - Current learning rate: 8.50e-06
+2025-12-25 04:13:58,289 - INFO - First model parameter norm: 4.472136 
+2025-12-25 04:15:00,192 - INFO - Epoch 5 - Prediction distribution: {0: 900}
+2025-12-25 04:15:00,192 - INFO - Epoch 5 - Label distribution: {0: 696, 1: 204}
+2025-12-25 04:15:00,355 - INFO - Epoch 5 (classification)
+Losses:
+  cls_loss: 0.6189
+Evaluation Metrics:
+  cls_loss: 0.5377
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 04:15:00,356 - INFO - Epoch 6 starting
+Epoch 6 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 04:15:01,796 - INFO - Total gradient norm before optimizer.step(): 0.444206
+Epoch 6 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:25<00:00,  1.57s/it, cls_loss=0.5547]
+end of one epoch,  steps :  476
+2025-12-25 04:27:26,163 - INFO - Epoch 6 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6180713821609481})
+2025-12-25 04:27:26,163 - INFO - Current learning rate: 9.92e-06
+2025-12-25 04:27:26,181 - INFO - First model parameter norm: 4.472136 
+2025-12-25 04:28:27,999 - INFO - Epoch 6 - Prediction distribution: {0: 900}
+2025-12-25 04:28:27,999 - INFO - Epoch 6 - Label distribution: {0: 696, 1: 204}
+2025-12-25 04:28:28,154 - INFO - Epoch 6 (classification)
+Losses:
+  cls_loss: 0.6181
+Evaluation Metrics:
+  cls_loss: 0.5376
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 04:28:28,155 - INFO - Epoch 7 starting                                                                               [285/1747]
+Epoch 7 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 04:28:29,723 - INFO - Total gradient norm before optimizer.step(): 0.569354
+Epoch 7 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:33<00:00,  1.58s/it, cls_loss=0.7353]
+end of one epoch,  steps :  476
+2025-12-25 04:41:01,584 - INFO - Epoch 7 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6170738705066072})
+2025-12-25 04:41:01,584 - INFO - Current learning rate: 9.99e-06
+2025-12-25 04:41:01,594 - INFO - First model parameter norm: 4.472136 
+2025-12-25 04:42:04,451 - INFO - Epoch 7 - Prediction distribution: {0: 900}
+2025-12-25 04:42:04,452 - INFO - Epoch 7 - Label distribution: {0: 696, 1: 204}
+2025-12-25 04:42:04,632 - INFO - Epoch 7 (classification)
+Losses:
+  cls_loss: 0.6171
+Evaluation Metrics:
+  cls_loss: 0.5306
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 04:42:04,633 - INFO - Epoch 8 starting
+Epoch 8 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 04:42:06,267 - INFO - Total gradient norm before optimizer.step(): 0.314024
+Epoch 8 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:40<00:00,  1.60s/it, cls_loss=0.6843]
+end of one epoch,  steps :  476
+2025-12-25 04:54:45,309 - INFO - Epoch 8 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.613875844836736})
+2025-12-25 04:54:45,309 - INFO - Current learning rate: 9.98e-06
+2025-12-25 04:54:45,324 - INFO - First model parameter norm: 4.472136 
+2025-12-25 04:55:47,523 - INFO - Epoch 8 - Prediction distribution: {0: 900}
+2025-12-25 04:55:47,524 - INFO - Epoch 8 - Label distribution: {0: 696, 1: 204}
+2025-12-25 04:55:47,648 - INFO - Epoch 8 (classification)
+Losses:
+  cls_loss: 0.6139
+Evaluation Metrics:
+  cls_loss: 0.5552
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 04:55:47,648 - INFO - Epoch 9 starting
+Epoch 9 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]
+2025-12-25 04:55:49,688 - INFO - Total gradient norm before optimizer.step(): 0.646900
+Epoch 9 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [12:32<00:00,  1.58s/it, cls_loss=0.5021]
+end of one epoch,  steps :  476
+2025-12-25 05:08:19,896 - INFO - Epoch 9 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.6107291315658754})
+2025-12-25 05:08:19,896 - INFO - Current learning rate: 9.95e-06
+2025-12-25 05:08:19,912 - INFO - First model parameter norm: 4.472136 
+2025-12-25 05:09:22,525 - INFO - Epoch 9 - Prediction distribution: {0: 900}
+2025-12-25 05:09:22,525 - INFO - Epoch 9 - Label distribution: {0: 696, 1: 204}
+2025-12-25 05:09:22,671 - INFO - Epoch 9 (classification)
+Losses:
+  cls_loss: 0.6107
+Evaluation Metrics:
+  cls_loss: 0.5605
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 05:09:22,672 - INFO - Epoch 10 starting
+Epoch 10 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 05:09:23,838 - INFO - Total gradient norm before optimizer.step(): 0.888316
+Epoch 10 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:43<00:00,  1.60s/it, cls_loss=0.8395]
+end of one epoch,  steps :  476
+2025-12-25 05:22:06,491 - INFO - Epoch 10 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.604340613764875})
+2025-12-25 05:22:06,492 - INFO - Current learning rate: 9.91e-06
+2025-12-25 05:22:06,506 - INFO - First model parameter norm: 4.472136 
+2025-12-25 05:23:07,775 - INFO - Epoch 10 - Prediction distribution: {0: 900}
+2025-12-25 05:23:07,776 - INFO - Epoch 10 - Label distribution: {0: 696, 1: 204}
+2025-12-25 05:23:07,947 - INFO - Epoch 10 (classification)
+Losses:
+  cls_loss: 0.6043
+Evaluation Metrics:
+  cls_loss: 0.5281
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+2025-12-25 05:23:07,948 - INFO - Epoch 11 starting
+Epoch 11 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 05:23:09,136 - INFO - Total gradient norm before optimizer.step(): 0.411206
+Epoch 11 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:24<00:00,  1.56s/it, cls_loss=0.9177]
+end of one epoch,  steps :  476
+2025-12-25 05:35:32,887 - INFO - Epoch 11 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5985350036571006})
+2025-12-25 05:35:32,888 - INFO - Current learning rate: 9.85e-06
+2025-12-25 05:35:32,902 - INFO - First model parameter norm: 4.472136 
+2025-12-25 05:36:34,016 - INFO - Epoch 11 - Prediction distribution: {0: 900}
+2025-12-25 05:36:34,016 - INFO - Epoch 11 - Label distribution: {0: 696, 1: 204}
+2025-12-25 05:36:34,185 - INFO - Epoch 11 (classification)
+Losses:
+  cls_loss: 0.5985
+Evaluation Metrics:
+  cls_loss: 0.5280
+  accuracy: 0.7733
+  f1_macro_cli: 0.4361
+  f1_micro_cli: 0.7733
+  precision: 0.3867
+  recall: 0.5000
+  specificity: 0.5000
+
+2025-12-25 05:36:34,185 - INFO - Epoch 12 starting
+Epoch 12 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 05:36:35,355 - INFO - Total gradient norm before optimizer.step(): 1.171074
+Epoch 12 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:39<00:00,  1.60s/it, cls_loss=0.8149]
+end of one epoch,  steps :  476
+2025-12-25 05:49:13,684 - INFO - Epoch 12 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5916536790984017})
+2025-12-25 05:49:13,685 - INFO - Current learning rate: 9.79e-06
+2025-12-25 05:49:13,699 - INFO - First model parameter norm: 4.472136 
+2025-12-25 05:50:17,163 - INFO - Epoch 12 - Prediction distribution: {0: 887, 1: 13}
+2025-12-25 05:50:17,163 - INFO - Epoch 12 - Label distribution: {0: 696, 1: 204}
+2025-12-25 05:50:17,316 - INFO - Epoch 12 (classification)
+Losses:
+  cls_loss: 0.5917
+Evaluation Metrics:
+  cls_loss: 0.5348
+  accuracy: 0.7722
+  f1_macro_cli: 0.4629
+  f1_micro_cli: 0.7722
+  precision: 0.6192
+  recall: 0.5097
+  specificity: 0.5097
+2025-12-25 05:50:23,790 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 05:50:23,791 - INFO - New best classification model saved with metric: 0.4629
+2025-12-25 05:50:23,791 - INFO - Epoch 13 starting
+Epoch 13 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 05:50:24,992 - INFO - Total gradient norm before optimizer.step(): 0.560810
+Epoch 13 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:42<00:00,  1.60s/it, cls_loss=0.6004]
+end of one epoch,  steps :  476
+2025-12-25 06:03:06,691 - INFO - Epoch 13 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5829224252149838})
+2025-12-25 06:03:06,691 - INFO - Current learning rate: 9.71e-06
+2025-12-25 06:03:06,706 - INFO - First model parameter norm: 4.472136 
+2025-12-25 06:04:08,563 - INFO - Epoch 13 - Prediction distribution: {0: 886, 1: 14}
+2025-12-25 06:04:08,564 - INFO - Epoch 13 - Label distribution: {0: 696, 1: 204}
+2025-12-25 06:04:08,715 - INFO - Epoch 13 (classification)
+Losses:
+  cls_loss: 0.5829
+Evaluation Metrics:
+  cls_loss: 0.5338
+  accuracy: 0.7756
+  f1_macro_cli: 0.4729
+  f1_micro_cli: 0.7756
+  precision: 0.6751
+  recall: 0.5153
+  specificity: 0.5153
+025-12-25 06:04:15,292 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 06:04:15,293 - INFO - New best classification model saved with metric: 0.4729
+2025-12-25 06:04:15,293 - INFO - Epoch 14 starting
+Epoch 14 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 06:04:16,217 - INFO - Total gradient norm before optimizer.step(): 0.599591
+Epoch 14 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:44<00:00,  1.61s/it, cls_loss=0.3155]
+end of one epoch,  steps :  476
+2025-12-25 06:16:59,847 - INFO - Epoch 14 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5740630739376325})
+2025-12-25 06:16:59,847 - INFO - Current learning rate: 9.62e-06
+2025-12-25 06:16:59,865 - INFO - First model parameter norm: 4.472136 
+2025-12-25 06:18:02,114 - INFO - Epoch 14 - Prediction distribution: {0: 873, 1: 27}
+2025-12-25 06:18:02,115 - INFO - Epoch 14 - Label distribution: {0: 696, 1: 204}
+2025-12-25 06:18:02,260 - INFO - Epoch 14 (classification)
+Losses:
+  cls_loss: 0.5741
+Evaluation Metrics:
+  cls_loss: 0.5333
+  accuracy: 0.7722
+  f1_macro_cli: 0.4909
+  f1_micro_cli: 0.7722
+  precision: 0.6313
+  recall: 0.5218
+  specificity: 0.5218
+
+2025-12-25 06:18:08,869 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 06:18:08,871 - INFO - New best classification model saved with metric: 0.4909
+2025-12-25 06:18:08,871 - INFO - Epoch 15 starting
+Epoch 15 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 06:18:09,930 - INFO - Total gradient norm before optimizer.step(): 1.138107
+Epoch 15 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:46<00:00,  1.61s/it, cls_loss=0.4196]
+end of one epoch,  steps :  476
+2025-12-25 06:30:55,126 - INFO - Epoch 15 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.565821094516696})
+2025-12-25 06:30:55,127 - INFO - Current learning rate: 9.52e-06
+2025-12-25 06:30:55,142 - INFO - First model parameter norm: 4.472136 
+2025-12-25 06:31:58,588 - INFO - Epoch 15 - Prediction distribution: {0: 803, 1: 97}
+2025-12-25 06:31:58,589 - INFO - Epoch 15 - Label distribution: {0: 696, 1: 204}
+2025-12-25 06:31:58,750 - INFO - Epoch 15 (classification)
+Losses:
+  cls_loss: 0.5658
+Evaluation Metrics:
+  cls_loss: 0.5529
+  accuracy: 0.7456
+  f1_macro_cli: 0.5432
+  f1_micro_cli: 0.7456
+  precision: 0.5810
+  recall: 0.5444
+  specificity: 0.5444                                                                                                            [74/1747]
+
+2025-12-25 06:32:05,359 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 06:32:05,361 - INFO - New best classification model saved with metric: 0.5432
+2025-12-25 06:32:05,361 - INFO - Epoch 16 starting
+Epoch 16 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 06:32:06,471 - INFO - Total gradient norm before optimizer.step(): 0.728124
+Epoch 16 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:40<00:00,  1.60s/it, cls_loss=0.6291]
+end of one epoch,  steps :  476
+2025-12-25 06:44:46,274 - INFO - Epoch 16 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5578157099417779})
+2025-12-25 06:44:46,274 - INFO - Current learning rate: 9.41e-06
+2025-12-25 06:44:46,289 - INFO - First model parameter norm: 4.472136 
+2025-12-25 06:45:48,795 - INFO - Epoch 16 - Prediction distribution: {0: 827, 1: 73}
+2025-12-25 06:45:48,795 - INFO - Epoch 16 - Label distribution: {0: 696, 1: 204}
+2025-12-25 06:45:48,934 - INFO - Epoch 16 (classification)
+Losses:
+  cls_loss: 0.5578
+Evaluation Metrics:
+  cls_loss: 0.5486
+  accuracy: 0.7522
+  f1_macro_cli: 0.5243
+  f1_micro_cli: 0.7522
+  precision: 0.5779
+  recall: 0.5331
+  specificity: 0.5331
+
+2025-12-25 06:45:48,934 - INFO - Epoch 17 starting
+Epoch 17 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 06:45:51,398 - INFO - Total gradient norm before optimizer.step(): 0.684397
+Epoch 17 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:39<00:00,  1.59s/it, cls_loss=0.6378]
+end of one epoch,  steps :  476
+2025-12-25 06:58:28,045 - INFO - Epoch 17 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5495380090252191})
+2025-12-25 06:58:28,045 - INFO - Current learning rate: 9.29e-06
+2025-12-25 06:58:28,057 - INFO - First model parameter norm: 4.472136 
+2025-12-25 06:59:29,933 - INFO - Epoch 17 - Prediction distribution: {0: 850, 1: 50}
+2025-12-25 06:59:29,934 - INFO - Epoch 17 - Label distribution: {0: 696, 1: 204}
+2025-12-25 06:59:30,057 - INFO - Epoch 17 (classification)
+Losses:
+  cls_loss: 0.5495
+Evaluation Metrics:
+  cls_loss: 0.5438
+  accuracy: 0.7622
+  f1_macro_cli: 0.5095
+  f1_micro_cli: 0.7622
+  precision: 0.5918
+  recall: 0.5275
+  specificity: 0.5275
+2025-12-25 06:59:30,057 - INFO - Epoch 18 starting
+Epoch 18 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 06:59:31,398 - INFO - Total gradient norm before optimizer.step(): 1.159375
+Epoch 18 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:32<00:00,  1.58s/it, cls_loss=0.6048]
+end of one epoch,  steps :  476
+2025-12-25 07:12:03,059 - INFO - Epoch 18 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5422917290144608})
+2025-12-25 07:12:03,059 - INFO - Current learning rate: 9.15e-06
+2025-12-25 07:12:03,077 - INFO - First model parameter norm: 4.472136 
+2025-12-25 07:13:05,161 - INFO - Epoch 18 - Prediction distribution: {0: 791, 1: 109}
+2025-12-25 07:13:05,161 - INFO - Epoch 18 - Label distribution: {0: 696, 1: 204}
+2025-12-25 07:13:05,329 - INFO - Epoch 18 (classification)
+Losses:
+  cls_loss: 0.5423
+Evaluation Metrics:
+  cls_loss: 0.5635
+  accuracy: 0.7411
+  f1_macro_cli: 0.5494
+  f1_micro_cli: 0.7411
+  precision: 0.5798
+  recall: 0.5485
+  specificity: 0.5485
+
+2025-12-25 07:13:11,958 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 07:13:11,959 - INFO - New best classification model saved with metric: 0.5494
+2025-12-25 07:13:11,959 - INFO - Epoch 19 starting
+Epoch 19 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]
+2025-12-25 07:13:12,850 - INFO - Total gradient norm before optimizer.step(): 0.628626
+Epoch 19 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [12:34<00:00,  1.59s/it, cls_loss=0.7172]
+end of one epoch,  steps :  476
+2025-12-25 07:25:46,748 - INFO - Epoch 19 finished
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.5346360877469307})
+2025-12-25 07:25:46,749 - INFO - Current learning rate: 9.01e-06
+2025-12-25 07:25:46,761 - INFO - First model parameter norm: 4.472136 
+2025-12-25 07:26:49,808 - INFO - Epoch 19 - Prediction distribution: {0: 701, 1: 199}
+2025-12-25 07:26:49,808 - INFO - Epoch 19 - Label distribution: {0: 696, 1: 204}
+2025-12-25 07:26:49,946 - INFO - Epoch 19 (classification)
+Losses:
+  cls_loss: 0.5346
+Evaluation Metrics:
+  cls_loss: 0.5874
+  accuracy: 0.6833
+  f1_macro_cli: 0.5444
+  f1_micro_cli: 0.6833
+  precision: 0.5448
+  recall: 0.5440
+  speci
+2025-12-25 07:26:49,947 - INFO - 
+classification training completed. 
+2025-12-25 07:26:49,947 - INFO - Training average metrics:
+2025-12-25 07:26:49,947 - INFO -   train_cls_loss: 0.5956
+2025-12-25 07:26:49,947 - INFO -   eval_cls_loss: 0.5477
+2025-12-25 07:26:49,947 - INFO - 
+Training completed.
+2025-12-25 07:26:49,947 - INFO - 
+Testing...
+2025-12-25 07:26:54,302 - INFO - Model loaded from checkpoints/experiment_5.7/best_classification_model.pt
+2025-12-25 07:27:54,508 - INFO - Epoch final - Prediction distribution: {0: 791, 1: 109}
+2025-12-25 07:27:54,508 - INFO - Epoch final - Label distribution: {0: 696, 1: 204}
+2025-12-25 07:27:54,530 - INFO - 
+Test metrics:
+2025-12-25 07:27:54,530 - INFO - Epoch final (classification)
+Evaluation Metrics:
+  cls_loss: 0.5635
+  accuracy: 0.7411
+  f1_macro_cli: 0.5494
+  f1_micro_cli: 0.7411
+  precision: 0.5798
+  recall: 0.5485
+  specificity: 0.5485

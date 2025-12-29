@@ -36,19 +36,19 @@ python run_example.py
 
 ```bash
 # 使用BERT训练
-python train_hallucination_detector.py \
+python train.py \
     --model_name ../../models/bert-base-uncased \
     --data_path ../summary_nli_hallucination_dataset.xlsx \
     --output_dir ./models/bert_hallucination_detector \
-    --batch_size 16 \
+    --batch_size 8 \
     --num_epochs 3
 
-# 使用RoBERTa训练（推荐）
-python train_hallucination_detector.py \
-    --model_name roberta-base \
+# 使用deBERTa训练（推荐）
+python train.py \
+    --model_name ../../models/deberta-v3-large \
     --data_path ../summary_nli_hallucination_dataset.xlsx \
     --output_dir ./models/roberta_hallucination_detector \
-    --batch_size 16 \
+    --batch_size 4 \
     --num_epochs 3
 ```
 

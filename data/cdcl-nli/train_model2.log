@@ -1,0 +1,647 @@
+[2025-12-26 01:13:34,787] [INFO] [real_accelerator.py:222:get_accelerator] Setting ds_accelerator to cuda (auto detect)                                                    
+2025-12-26 01:13:36,416 - INFO - Using device: cuda                                                                                                                        
+2025-12-26 01:13:36,416 - INFO - Processing train data                                                                                                                     
+2025-12-26 01:13:36,416 - INFO - Processing test data                                                                                                                      
+2025-12-26 01:14:37,269 - INFO - Loaded graph pairs from /mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/train/graph_pairs_batch_0.pkl              
+2025-12-26 01:14:47,743 - INFO - Loaded graph pairs from /mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/test/graph_pairs_batch_0.pkl               
+476 90                                                                                                                                                                     
+num_node_types: 20                                                                                                                                                         
+2025-12-26 01:15:00,442 - INFO - Total training steps: 33600                                                                                                               
+2025-12-26 01:15:00,442 - INFO - Total warmup steps: 3360                                                                                                                  
+2025-12-26 01:15:00,442 - INFO - Starting train  ==  classification task...                                                                                                
+2025-12-26 01:15:00,442 - INFO - Epoch 0 starting                                                                                                                          
+Epoch 1 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 01:15:02,979 - INFO - 
+Total gradient norm before clipping: 0.415722                                                                                                                              
+2025-12-26 01:15:02,979 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 1 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:22<00:00,  1.18s/it, cls_loss=0.1555]                                 
+end of one epoch,  steps :  476                                                                                                                                            
+2025-12-26 01:24:22,673 - INFO - Epoch 0 finished                                                                                                                          
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.1606864057512594})                                                                                            
+2025-12-26 01:24:22,674 - INFO - Current learning rate: 2.83e-06                                                                                                           
+2025-12-26 01:24:22,682 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 01:25:07,630 - INFO - Epoch 0 - Prediction distribution: {1: 900}                                                                                               
+2025-12-26 01:25:07,631 - INFO - Epoch 0 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 01:25:07,755 - INFO - Epoch 0 (classification)                                                                                                                  
+Losses:                                                                                                                                                                    
+  cls_loss: 0.1607                                                                                                                                                         
+Evaluation Metrics:                                                                                                                                                        
+  cls_loss: 0.1539                                                                                                                                                         
+  accuracy: 0.2267                                                                                                                                                         
+  f1_macro_cli: 0.1848                    
+  f1_micro_cli: 0.2267                    
+  precision: 0.1133                       
+  recall: 0.5000                          
+  specificity: 0.5000                     
+2025-12-26 01:25:17,535 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 01:25:17,536 - INFO - New best classification model saved with metric: 0.1848                                                                                   
+2025-12-26 01:25:17,536 - INFO - Epoch 1 starting                                    
+Epoch 1 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 01:25:18,674 - INFO - 
+Total gradient norm before clipping: 0.148629                                        
+2025-12-26 01:25:18,674 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 1 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [10:22<00:00,  1.31s/it, cls_loss=0.1918]
+end of one epoch,  steps :  476           
+2025-12-26 01:35:39,547 - INFO - Epoch 1 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15884367052559592})                                                                                           
+2025-12-26 01:35:39,552 - INFO - Current learning rate: 5.67e-06                     
+2025-12-26 01:35:39,556 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 01:36:25,031 - INFO - Epoch 1 - Prediction distribution: {1: 900}                                                                                               
+2025-12-26 01:36:25,031 - INFO - Epoch 1 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 01:36:25,144 - INFO - Epoch 1 (classification)                            
+Losses:                                   
+  cls_loss: 0.1588                        
+Evaluation Metrics:                       
+  cls_loss: 0.1465                        
+  accuracy: 0.2267                        
+  f1_macro_cli: 0.1848                    
+  f1_micro_cli: 0.2267                    
+  precision: 0.1133                       
+  recall: 0.5000                          
+  specificity: 0.5000                     
+
+2025-12-26 01:36:25,144 - INFO - Epoch 2 starting                                    
+Epoch 2 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 01:36:26,521 - INFO - 
+Total gradient norm before clipping: 0.094861                                        
+2025-12-26 01:36:26,522 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 2 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [10:04<00:00,  1.27s/it, cls_loss=0.1515]
+end of one epoch,  steps :  476           
+2025-12-26 01:46:29,199 - INFO - Epoch 2 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.1588268284725041})                                                                                            
+2025-12-26 01:46:29,200 - INFO - Current learning rate: 8.50e-06                     
+2025-12-26 01:46:29,208 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 01:47:14,042 - INFO - Epoch 2 - Prediction distribution: {1: 900}                                                                                               
+2025-12-26 01:47:14,042 - INFO - Epoch 2 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 01:47:14,190 - INFO - Epoch 2 (classification)                            
+Losses:                                   
+  cls_loss: 0.1588                        
+Evaluation Metrics:                       
+  cls_loss: 0.1490                        
+  accuracy: 0.2267                        
+    f1_macro_cli: 0.1848                    
+  f1_micro_cli: 0.2267                    
+  precision: 0.1133                       
+  recall: 0.5000                          
+  specificity: 0.5000                     
+
+2025-12-26 01:47:14,190 - INFO - Epoch 3 starting                                    
+Epoch 3 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 01:47:15,336 - INFO - 
+Total gradient norm before clipping: 0.111354                                        
+2025-12-26 01:47:15,336 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 3 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:44<00:00,  1.23s/it, cls_loss=0.2192]
+end of one epoch,  steps :  476           
+2025-12-26 01:56:58,281 - INFO - Epoch 3 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15895591078310453})                                                                                           
+2025-12-26 01:56:58,281 - INFO - Current learning rate: 1.13e-05                     
+2025-12-26 01:56:58,288 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 01:57:42,300 - INFO - Epoch 3 - Prediction distribution: {1: 900}                                                                                               
+2025-12-26 01:57:42,301 - INFO - Epoch 3 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 01:57:42,434 - INFO - Epoch 3 (classification)                            
+Losses:                                   
+  cls_loss: 0.1590                        
+Evaluation Metrics:                       
+  cls_loss: 0.1468                        
+  accuracy: 0.2267                        
+  f1_macro_cli: 0.1848                    
+  f1_micro_cli: 0.2267                    
+  precision: 0.1133                       
+  recall: 0.5000                          
+  specificity: 0.5000                     
+
+2025-12-26 01:57:42,434 - INFO - Epoch 4 starting                                    
+Epoch 4 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 01:57:43,802 - INFO - 
+Total gradient norm before clipping: 0.165182                                        
+2025-12-26 01:57:43,802 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 4 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:39<00:00,  1.22s/it, cls_loss=0.1506]
+end of one epoch,  steps :  476           
+2025-12-26 02:07:22,223 - INFO - Epoch 4 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.1585521067359618})                                                                                            
+2025-12-26 02:07:22,223 - INFO - Current learning rate: 1.42e-05                     
+2025-12-26 02:07:22,232 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 02:08:13,194 - INFO - Epoch 4 - Prediction distribution: {0: 1, 1: 899}                                                                                         
+2025-12-26 02:08:13,194 - INFO - Epoch 4 - Label distribution: {0: 696, 1: 204}      
+2025-12-26 02:08:13,345 - INFO - Epoch 4 (classification)                                                                                                        [486/1804]
+Losses:                                   
+  cls_loss: 0.1586                        
+Evaluation Metrics:                       
+  cls_loss: 0.1456                        
+  accuracy: 0.2278                        
+  f1_macro_cli: 0.1864                    
+  f1_micro_cli: 0.2278                    
+  precision: 0.6135                       
+  recall: 0.5007                          
+  specificity: 0.5007                     
+
+2025-12-26 02:08:20,228 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 02:08:20,230 - INFO - New best classification model saved with metric: 0.1864                                                                                   
+2025-12-26 02:08:20,230 - INFO - Epoch 5 starting                                    
+Epoch 5 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 02:08:21,622 - INFO - 
+Total gradient norm before clipping: 0.330066                                        
+2025-12-26 02:08:21,622 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 5 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [10:01<00:00,  1.26s/it, cls_loss=0.1447]
+end of one epoch,  steps :  476           
+2025-12-26 02:18:21,350 - INFO - Epoch 5 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15821388435839606})                                                                                           
+2025-12-26 02:18:21,351 - INFO - Current learning rate: 1.70e-05                     
+2025-12-26 02:18:21,359 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 02:19:06,354 - INFO - Epoch 5 - Prediction distribution: {1: 900}                                                                                               
+2025-12-26 02:19:06,355 - INFO - Epoch 5 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 02:19:06,519 - INFO - Epoch 5 (classification)                            
+Losses:                                   
+  cls_loss: 0.1582                        
+Evaluation Metrics:                       
+  cls_loss: 0.1472                        
+  accuracy: 0.2267                        
+  f1_macro_cli: 0.1848                    
+  f1_micro_cli: 0.2267                    
+  precision: 0.1133                       
+  recall: 0.5000                          
+  specificity: 0.5000                     
+
+2025-12-26 02:19:06,519 - INFO - Epoch 6 starting                                    
+Epoch 6 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 02:19:07,755 - INFO - 
+Total gradient norm before clipping: 0.166936                                        
+2025-12-26 02:19:07,755 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 6 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:45<00:00,  1.23s/it, cls_loss=0.1506]
+end of one epoch,  steps :  476           
+2025-12-26 02:28:51,571 - INFO - Epoch 6 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15687130854911163})                                                                                           
+2025-12-26 02:28:51,572 - INFO - Current learning rate: 1.98e-05                     
+2025-12-26 02:28:51,580 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 02:29:36,764 - INFO - Epoch 6 - Prediction distribution: {0: 13, 1: 887}                                                                                        
+2025-12-26 02:29:36,764 - INFO - Epoch 6 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 02:29:36,904 - INFO - Epoch 6 (classification)                            
+Losses:                                   
+  cls_loss: 0.1569                        
+Evaluation Metrics:                       
+  cls_loss: 0.1481                        
+  accuracy: 0.2411                        
+  f1_macro_cli: 0.2053                    
+  f1_micro_cli: 0.2411                    
+  precision: 0.6150                       
+  recall: 0.5093                          
+  specificity: 0.5093                     
+
+2025-12-26 02:29:44,586 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 02:29:44,587 - INFO - New best classification model saved with metric: 0.2053                                                                                   
+2025-12-26 02:29:44,587 - INFO - Epoch 7 starting                                    
+Epoch 7 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 02:29:46,379 - INFO - 
+Total gradient norm before clipping: 0.412089                                        
+2025-12-26 02:29:46,379 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 7 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:56<00:00,  1.25s/it, cls_loss=0.1460]
+end of one epoch,  steps :  476           
+2025-12-26 02:39:40,816 - INFO - Epoch 7 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15533058415754003})                                                                                           
+2025-12-26 02:39:40,817 - INFO - Current learning rate: 2.00e-05                     
+2025-12-26 02:39:40,826 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 02:40:25,954 - INFO - Epoch 7 - Prediction distribution: {0: 141, 1: 759}                                                                                       
+2025-12-26 02:40:25,954 - INFO - Epoch 7 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 02:40:26,096 - INFO - Epoch 7 (classification)                            
+Losses:                                   
+  cls_loss: 0.1553                        
+Evaluation Metrics:                       
+  cls_loss: 0.1429                        
+  accuracy: 0.3433                        
+  f1_macro_cli: 0.3401                    
+  f1_micro_cli: 0.3433                    
+  precision: 0.5587                       
+  recall: 0.5442                          
+  specificity: 0.5442                     
+  2025-12-26 02:40:33,044 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 02:40:33,045 - INFO - New best classification model saved with metric: 0.3401                                                                                   
+2025-12-26 02:40:33,045 - INFO - Epoch 8 starting                                    
+Epoch 8 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 02:40:34,660 - INFO - 
+Total gradient norm before clipping: 0.073959                                        
+2025-12-26 02:40:34,660 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 8 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:51<00:00,  1.24s/it, cls_loss=0.1469]
+end of one epoch,  steps :  476           
+2025-12-26 02:50:24,423 - INFO - Epoch 8 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.15247477201290993})                                                                                           
+2025-12-26 02:50:24,424 - INFO - Current learning rate: 2.00e-05                     
+2025-12-26 02:50:24,431 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 02:51:10,439 - INFO - Epoch 8 - Prediction distribution: {0: 153, 1: 747}                                                                                       
+2025-12-26 02:51:10,439 - INFO - Epoch 8 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 02:51:10,579 - INFO - Epoch 8 (classification)                            
+Losses:                                   
+  cls_loss: 0.1525                        
+Evaluation Metrics:                       
+  cls_loss: 0.1448                        
+  accuracy: 0.3500                        
+  f1_macro_cli: 0.3479                    
+  f1_micro_cli: 0.3500                    
+  precision: 0.5539                       
+  recall: 0.5434                          
+  specificity: 0.5434                     
+
+2025-12-26 02:51:17,601 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 02:51:17,602 - INFO - New best classification model saved with metric: 0.3479                                                                                   
+2025-12-26 02:51:17,602 - INFO - Epoch 9 starting                                    
+Epoch 9 Training:   0%|                                                                                           | 0/476 [00:00<?, ?it/s]2025-12-26 02:51:18,882 - INFO - 
+Total gradient norm before clipping: 0.184836                                        
+2025-12-26 02:51:18,882 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 9 Training: 100%|████████████████████████████████████████████████████████████████| 476/476 [09:56<00:00,  1.25s/it, cls_loss=0.1197]
+end of one epoch,  steps :  476           
+2025-12-26 03:01:14,027 - INFO - Epoch 9 finished                                    
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.14977379712988348})                                                                                           
+2025-12-26 03:01:14,028 - INFO - Current learning rate: 1.99e-05                     
+2025-12-26 03:01:14,037 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:01:58,401 - INFO - Epoch 9 - Prediction distribution: {0: 225, 1: 675}                                                                                       
+2025-12-26 03:01:58,402 - INFO - Epoch 9 - Label distribution: {0: 696, 1: 204}                                                                                            
+2025-12-26 03:01:58,554 - INFO - Epoch 9 (classification)                            
+Losses:                                   
+  cls_loss: 0.1498                        
+Evaluation Metrics:                       
+  cls_loss: 0.1437                        
+  accuracy: 0.4078                        
+  f1_macro_cli: 0.4075                    
+  f1_micro_cli: 0.4078                    
+  precision: 0.5593                       
+  recall: 0.5634                          
+  specificity: 0.5634                     
+
+2025-12-26 03:02:05,498 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 03:02:05,499 - INFO - New best classification model saved with metric: 0.4075                                                                                   
+2025-12-26 03:02:05,499 - INFO - Epoch 10 starting                                   
+Epoch 10 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:02:07,428 - INFO - 
+Total gradient norm before clipping: 0.198000                                        
+2025-12-26 03:02:07,428 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 10 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [10:01<00:00,  1.26s/it, cls_loss=0.1364]
+end of one epoch,  steps :  476           
+2025-12-26 03:12:06,552 - INFO - Epoch 10 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.1479716576291483})                                                                                            
+2025-12-26 03:12:06,552 - INFO - Current learning rate: 1.98e-05                     
+2025-12-26 03:12:06,561 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:12:53,209 - INFO - Epoch 10 - Prediction distribution: {0: 472, 1: 428}                                                                                      
+2025-12-26 03:12:53,210 - INFO - Epoch 10 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 03:12:53,370 - INFO - Epoch 10 (classification)                           
+Losses:                                   
+  cls_loss: 0.1480                        
+Evaluation Metrics:                       
+  cls_loss: 0.1446                        
+  accuracy: 0.5489                        
+  f1_macro_cli: 0.5050                    
+  f1_micro_cli: 0.5489                    
+  precision: 0.5356                       
+  recall: 0.5507                          
+  specificity: 0.5507                     
+
+2025-12-26 03:13:00,332 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt                                                                    
+2025-12-26 03:13:00,333 - INFO - New best classification model saved with metric: 0.5050                                                                                   
+2025-12-26 03:13:00,333 - INFO - Epoch 11 starting                                   
+Epoch 11 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:13:01,688 - INFO - 
+Total gradient norm before clipping: 0.110401                                        
+2025-12-26 03:13:01,689 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 11 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:56<00:00,  1.25s/it, cls_loss=0.1090]
+end of one epoch,  steps :  476           
+2025-12-26 03:22:57,126 - INFO - Epoch 11 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.14460927997754902})                                                                                           
+2025-12-26 03:22:57,127 - INFO - Current learning rate: 1.97e-05                     
+2025-12-26 03:22:57,136 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:23:44,334 - INFO - Epoch 11 - Prediction distribution: {0: 452, 1: 448}                                                                                      
+2025-12-26 03:23:44,335 - INFO - Epoch 11 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 03:23:44,471 - INFO - Epoch 11 (classification)                           
+Losses:                                   
+  cls_loss: 0.1446                        
+Evaluation Metrics:                       
+  cls_loss: 0.1460                        
+  accuracy: 0.5400                        
+  f1_macro_cli: 0.5022                    
+  f1_micro_cli: 0.5400                    
+  precision: 0.5388                       
+  recall: 0.5553                          
+  specificity: 0.5553                     
+
+2025-12-26 03:23:44,471 - INFO - Epoch 12 starting                                   
+Epoch 12 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:23:45,835 - INFO - 
+Total gradient norm before clipping: 0.461305                                        
+2025-12-26 03:23:45,835 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 12 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:43<00:00,  1.23s/it, cls_loss=0.1070]
+end of one epoch,  steps :  476           
+2025-12-26 03:33:28,123 - INFO - Epoch 12 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.14232871479534803})                                                                                           
+2025-12-26 03:33:28,124 - INFO - Current learning rate: 1.96e-05                     
+2025-12-26 03:33:28,135 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:34:17,803 - INFO - Epoch 12 - Prediction distribution: {0: 262, 1: 638}                                                                                      
+2025-12-26 03:34:17,804 - INFO - Epoch 12 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 03:34:17,952 - INFO - Epoch 12 (classification)                           
+Losses:                                   
+  cls_loss: 0.1423                        
+Evaluation Metrics:                       
+  cls_loss: 0.1502                        
+  accuracy: 0.4111                        
+  f1_macro_cli: 0.4087                    
+  f1_micro_cli: 0.4111                    
+  precision: 0.5307                       
+  recall: 0.5361                          
+  specificity: 0.5361                     
+
+2025-12-26 03:34:17,952 - INFO - Epoch 13 starting                               
+Epoch 13 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:34:19,096 - INFO - 
+Total gradient norm before clipping: 0.262476                                        
+2025-12-26 03:34:19,096 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 13 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:54<00:00,  1.25s/it, cls_loss=0.1122]
+end of one epoch,  steps :  476           
+2025-12-26 03:44:12,765 - INFO - Epoch 13 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.13968231535258413})                                                                                           
+2025-12-26 03:44:12,766 - INFO - Current learning rate: 1.94e-05                     
+2025-12-26 03:44:12,775 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:44:55,340 - INFO - Epoch 13 - Prediction distribution: {0: 291, 1: 609}                                                                                      
+2025-12-26 03:44:55,340 - INFO - Epoch 13 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 03:44:55,458 - INFO - Epoch 13 (classification)                           
+Losses:                                   
+  cls_loss: 0.1397                        
+Evaluation Metrics:                       
+  cls_loss: 0.1507                        
+  accuracy: 0.4456                        
+  f1_macro_cli: 0.4403                    
+  f1_micro_cli: 0.4456                    
+  precision: 0.5481                       
+  recall: 0.5601                          
+  specificity: 0.5601                     
+
+2025-12-26 03:44:55,458 - INFO - Epoch 14 starting                                   
+Epoch 14 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:44:56,438 - INFO - 
+Total gradient norm before clipping: 0.183528                                        
+2025-12-26 03:44:56,438 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 14 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:39<00:00,  1.22s/it, cls_loss=0.1482]
+end of one epoch,  steps :  476           
+2025-12-26 03:54:35,056 - INFO - Epoch 14 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.13720949734522014})                                                                                           
+2025-12-26 03:54:35,056 - INFO - Current learning rate: 1.92e-05                     
+2025-12-26 03:54:35,066 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 03:55:18,625 - INFO - Epoch 14 - Prediction distribution: {0: 394, 1: 506}                                                                                      
+2025-12-26 03:55:18,626 - INFO - Epoch 14 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 03:55:18,762 - INFO - Epoch 14 (classification)                           
+Losses:                                   
+  cls_loss: 0.1372                        
+Evaluation Metrics:                       
+  cls_loss: 0.1530                        
+  accuracy: 0.5111                        
+  f1_macro_cli: 0.4883                    
+  f1_micro_cli: 0.5111                    
+  precision: 0.5458                       
+  recall: 0.5644                          
+  specificity: 0.5644                     
+
+2025-12-26 03:55:18,762 - INFO - Epoch 15 starting                                   
+Epoch 15 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 03:55:19,848 - INFO - 
+Total gradient norm before clipping: 0.423295                                        
+2025-12-26 03:55:19,848 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 15 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:48<00:00,  1.24s/it, cls_loss=0.1697]
+end of one epoch,  steps :  476           
+2025-12-26 04:05:07,411 - INFO - Epoch 15 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.13462406274776498})                                                                                           
+2025-12-26 04:05:07,412 - INFO - Current learning rate: 1.90e-05                     
+2025-12-26 04:05:07,421 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:05:50,769 - INFO - Epoch 15 - Prediction distribution: {0: 472, 1: 428}                                                                                      
+2025-12-26 04:05:50,769 - INFO - Epoch 15 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 04:05:50,887 - INFO - Epoch 15 (classification)                           
+Losses:                                   
+  cls_loss: 0.1346                        
+Evaluation Metrics:                       
+  cls_loss: 0.1638                        
+  accuracy: 0.5356                        
+  f1_macro_cli: 0.4904                    
+  f1_micro_cli: 0.5356                    
+  precision: 0.5222                       
+  recall: 0.5317                          
+  specificity: 0.5317                     
+
+2025-12-26 04:05:50,887 - INFO - Epoch 16 starting                                   
+Epoch 16 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:05:52,150 - INFO - 
+Total gradient norm before clipping: 0.333136                                        
+2025-12-26 04:05:52,151 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 16 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:38<00:00,  1.21s/it, cls_loss=0.1194]
+end of one epoch,  steps :  476           
+2025-12-26 04:15:29,095 - INFO - Epoch 16 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.13380047124849648})                                                                                           
+2025-12-26 04:15:29,095 - INFO - Current learning rate: 1.88e-05                     
+2025-12-26 04:15:29,104 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:16:15,047 - INFO - Epoch 16 - Prediction distribution: {0: 345, 1: 555}                                                                                      
+2025-12-26 04:16:15,048 - INFO - Epoch 16 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 04:16:15,235 - INFO - Epoch 16 (classification)                           
+Losses:                                   
+  cls_loss: 0.1338                        
+Evaluation Metrics:                       
+  cls_loss: 0.1623                        
+  f1_macro_cli: 0.4476                    
+  f1_micro_cli: 0.4611                    
+  precision: 0.5263                       
+  recall: 0.5355                          
+  specificity: 0.5355                     
+
+2025-12-26 04:16:15,236 - INFO - Epoch 17 starting                                   
+Epoch 17 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:16:16,933 - INFO - 
+Total gradient norm before clipping: 0.398003                                        
+2025-12-26 04:16:16,933 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 17 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:51<00:00,  1.24s/it, cls_loss=0.1645]
+end of one epoch,  steps :  476           
+2025-12-26 04:26:06,451 - INFO - Epoch 17 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.1304441246227557})                                                                                            
+2025-12-26 04:26:06,452 - INFO - Current learning rate: 1.86e-05                     
+2025-12-26 04:26:06,461 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:26:49,406 - INFO - Epoch 17 - Prediction distribution: {0: 450, 1: 450}                                                                                      
+2025-12-26 04:26:49,407 - INFO - Epoch 17 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 04:26:49,519 - INFO - Epoch 17 (classification)                           
+Losses:                                   
+  cls_loss: 0.1304                        
+Evaluation Metrics:                       
+  cls_loss: 0.1648                        
+  accuracy: 0.5378                        
+  f1_macro_cli: 0.5005                    
+  f1_micro_cli: 0.5378                    
+  precision: 0.5378                       
+  recall: 0.5539                          
+  specificity: 0.5539                     
+
+2025-12-26 04:26:49,519 - INFO - Epoch 18 starting                                   
+Epoch 18 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:26:50,614 - INFO - 
+Total gradient norm before clipping: 0.273917                                        
+2025-12-26 04:26:50,615 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 18 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:44<00:00,  1.23s/it, cls_loss=0.1440]
+end of one epoch,  steps :  476           
+2025-12-26 04:36:34,187 - INFO - Epoch 18 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.13015623331195167})                                                                                           
+2025-12-26 04:36:34,187 - INFO - Current learning rate: 1.83e-05                     
+2025-12-26 04:36:34,197 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:37:17,692 - INFO - Epoch 18 - Prediction distribution: {0: 386, 1: 514}                                                                                      
+2025-12-26 04:37:17,692 - INFO - Epoch 18 - Label distribution: {0: 696, 1: 204}              
+2025-12-26 04:37:17,836 - INFO - Epoch 18 (classification)                                                                                                       [138/1804]
+Losses:                                   
+  cls_loss: 0.1302                        
+Evaluation Metrics:                       
+  cls_loss: 0.1629                        
+  accuracy: 0.4978                        
+  f1_macro_cli: 0.4764                    
+  f1_micro_cli: 0.4978                    
+  precision: 0.5374                       
+  recall: 0.5523                          
+  specificity: 0.5523                     
+
+2025-12-26 04:37:17,837 - INFO - Epoch 19 starting                                   
+Epoch 19 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:37:19,283 - INFO - 
+Total gradient norm before clipping: 0.403070                                        
+2025-12-26 04:37:19,283 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 19 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:44<00:00,  1.23s/it, cls_loss=0.1183]
+end of one epoch,  steps :  476           
+2025-12-26 04:47:02,532 - INFO - Epoch 19 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.12703161190475235})                                                                                           
+2025-12-26 04:47:02,533 - INFO - Current learning rate: 1.80e-05                     
+2025-12-26 04:47:02,549 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:47:48,259 - INFO - Epoch 19 - Prediction distribution: {0: 476, 1: 424}                                                                                      
+2025-12-26 04:47:48,259 - INFO - Epoch 19 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 04:47:48,408 - INFO - Epoch 19 (classification)                           
+Losses:                                   
+  cls_loss: 0.1270                        
+Evaluation Metrics:                       
+  cls_loss: 0.1711                        
+  accuracy: 0.5444                        
+  f1_macro_cli: 0.4987                    
+  f1_micro_cli: 0.5444                    
+  precision: 0.5287                       
+  recall: 0.5409                          
+  specificity: 0.5409                     
+
+2025-12-26 04:47:48,409 - INFO - Epoch 20 starting                                   
+Epoch 20 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:47:49,720 - INFO - 
+Total gradient norm before clipping: 0.534299                                        
+2025-12-26 04:47:49,720 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 20 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:33<00:00,  1.21s/it, cls_loss=0.1195]
+end of one epoch,  steps :  476           
+2025-12-26 04:57:22,103 - INFO - Epoch 20 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.12740327280891292})                                                                                           
+2025-12-26 04:57:22,104 - INFO - Current learning rate: 1.77e-05        
+2025-12-26 04:57:22,115 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 04:58:05,513 - INFO - Epoch 20 - Prediction distribution: {0: 352, 1: 548}                                                                                      
+2025-12-26 04:58:05,514 - INFO - Epoch 20 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 04:58:05,685 - INFO - Epoch 20 (classification)                           
+Losses:                                   
+  cls_loss: 0.1274                        
+Evaluation Metrics:                       
+  cls_loss: 0.1521                        
+  accuracy: 0.4733                        
+  f1_macro_cli: 0.4587                    
+  f1_micro_cli: 0.4733                    
+  precision: 0.5345                       
+  recall: 0.5469                          
+  specificity: 0.5469                     
+
+2025-12-26 04:58:05,685 - INFO - Epoch 21 starting                                   
+Epoch 21 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 04:58:06,819 - INFO - 
+Total gradient norm before clipping: 0.199217                                        
+2025-12-26 04:58:06,819 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 21 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:36<00:00,  1.21s/it, cls_loss=0.1684]
+end of one epoch,  steps :  476           
+2025-12-26 05:07:41,861 - INFO - Epoch 21 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.12416479385168362})                                                                                           
+2025-12-26 05:07:41,861 - INFO - Current learning rate: 1.74e-05                     
+2025-12-26 05:07:41,872 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 05:08:25,281 - INFO - Epoch 21 - Prediction distribution: {0: 360, 1: 540}                                                                                      
+2025-12-26 05:08:25,282 - INFO - Epoch 21 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 05:08:25,434 - INFO - Epoch 21 (classification)                           
+Losses:                                   
+  cls_loss: 0.1242                        
+Evaluation Metrics:                       
+  cls_loss: 0.1755                        
+  accuracy: 0.4822                        
+  f1_macro_cli: 0.4662                    
+  f1_micro_cli: 0.4822                    
+  precision: 0.5384                       
+  recall: 0.5526                          
+  specificity: 0.5526                     
+
+2025-12-26 05:08:25,434 - INFO - Epoch 22 starting                                   
+Epoch 22 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 05:08:27,303 - INFO - 
+Total gradient norm before clipping: 0.235896                                        
+2025-12-26 05:08:27,303 - INFO - Gradient clipping applied with max_norm=1.0                   
+Epoch 22 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:36<00:00,  1.21s/it, cls_loss=0.1030]                        [50/1804]
+end of one epoch,  steps :  476           
+2025-12-26 05:18:01,885 - INFO - Epoch 22 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.12217933195447471})                                                                                           
+2025-12-26 05:18:01,885 - INFO - Current learning rate: 1.71e-05                     
+2025-12-26 05:18:01,894 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 05:18:45,336 - INFO - Epoch 22 - Prediction distribution: {0: 327, 1: 573}                                                                                      
+2025-12-26 05:18:45,336 - INFO - Epoch 22 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 05:18:45,511 - INFO - Epoch 22 (classification)                           
+Losses:                                   
+  cls_loss: 0.1222                        
+Evaluation Metrics:                       
+  cls_loss: 0.1746                        
+  accuracy: 0.4500                        
+  f1_macro_cli: 0.4395                    
+  f1_micro_cli: 0.4500                    
+  precision: 0.5267                       
+  recall: 0.5352                          
+  specificity: 0.5352                     
+
+2025-12-26 05:18:45,512 - INFO - Epoch 23 starting                                   
+Epoch 23 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 05:18:46,855 - INFO - 
+Total gradient norm before clipping: 0.415712                                        
+2025-12-26 05:18:46,855 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 23 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:57<00:00,  1.25s/it, cls_loss=0.1631]
+end of one epoch,  steps :  476           
+2025-12-26 05:28:42,763 - INFO - Epoch 23 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.12103482481373959})                                                                                           
+2025-12-26 05:28:42,764 - INFO - Current learning rate: 1.67e-05                     
+2025-12-26 05:28:42,773 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 05:29:25,543 - INFO - Epoch 23 - Prediction distribution: {0: 505, 1: 395}                                                                                      
+2025-12-26 05:29:25,543 - INFO - Epoch 23 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 05:29:25,722 - INFO - Epoch 23 (classification)                           
+Losses:                                   
+  cls_loss: 0.1210                        
+Evaluation Metrics:                       
+  cls_loss: 0.1818                        
+  accuracy: 0.5811                        
+  f1_macro_cli: 0.5284                    
+  f1_micro_cli: 0.5811                    
+  precision: 0.5484                       
+  recall: 0.5680                          
+  specificity: 0.5680                     
+
+2025-12-26 05:29:32,322 - INFO - Model saved to checkpoints/experiment_5.7/best_classification_model.pt  
+2025-12-26 05:29:32,324 - INFO - New best classification model saved with metric: 0.5284                                                                           [5/1804]
+2025-12-26 05:29:32,324 - INFO - Epoch 24 starting                                   
+Epoch 24 Training:   0%|                                                                                          | 0/476 [00:00<?, ?it/s]2025-12-26 05:29:33,302 - INFO - 
+Total gradient norm before clipping: 0.538678                                        
+2025-12-26 05:29:33,302 - INFO - Gradient clipping applied with max_norm=1.0                                                                                               
+Epoch 24 Training: 100%|███████████████████████████████████████████████████████████████| 476/476 [09:35<00:00,  1.21s/it, cls_loss=0.1747]
+end of one epoch,  steps :  476           
+2025-12-26 05:39:08,213 - INFO - Epoch 24 finished                                   
+training losses: defaultdict(<class 'float'>, {'cls_loss': 0.11872477639278695})                                                                                           
+2025-12-26 05:39:08,214 - INFO - Current learning rate: 1.63e-05                     
+2025-12-26 05:39:08,224 - INFO - First model parameter norm: 4.472136                                                                                                      
+2025-12-26 05:39:52,084 - INFO - Epoch 24 - Prediction distribution: {0: 377, 1: 523}                                                                                      
+2025-12-26 05:39:52,085 - INFO - Epoch 24 - Label distribution: {0: 696, 1: 204}                                                                                           
+2025-12-26 05:39:52,245 - INFO - Epoch 24 (classification)                           
+Losses:                                   
+  cls_loss: 0.1187                        
+Evaluation Metrics:                       
+  cls_loss: 0.1905                        
+  accuracy: 0.5056                        
+  f1_macro_cli: 0.4866                    
+  f1_micro_cli: 0.5056                    
+  precision: 0.5512                       
+  recall: 0.5712                          
+  specificity: 0.5712                     
+
+2025-12-26 05:39:52,246 - INFO -          
+classification training completed.                                                   
+2025-12-26 05:39:52,246 - INFO - Training average metrics:                           
+2025-12-26 05:39:52,246 - INFO -   train_cls_loss: 0.1420                            
+2025-12-26 05:39:52,246 - INFO -   eval_cls_loss: 0.1565                             
+2025-12-26 05:39:52,246 - INFO -          
+Training completed.                       
+2025-12-26 05:39:52,246 - INFO -          
+Testing...                                
+2025-12-26 05:39:56,675 - INFO - Model loaded from checkpoints/experiment_5.7/best_classification_model.pt                                                                 
+2025-12-26 05:40:41,887 - INFO - Epoch final - Prediction distribution: {0: 505, 1: 395}                                                                                   
+2025-12-26 05:40:41,887 - INFO - Epoch final - Label distribution: {0: 696, 1: 204}                                                                                        
+2025-12-26 05:40:41,907 - INFO -          
+Test metrics:                             
+2025-12-26 05:40:41,908 - INFO - Epoch final (classification)                        
+Evaluation Metrics:                       
+  cls_loss: 0.1818                        
+  accuracy: 0.5811                        
+  f1_macro_cli: 0.5284                    
+  f1_micro_cli: 0.5811               
+  precision: 0.5484                       
+  recall: 0.5680                          
+  specificity: 0.5680              

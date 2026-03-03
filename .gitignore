@@ -17,10 +17,10 @@ data/cdcl-nli/rst_hallucination_detec/md_files
 
 data/cdcl-nli/rst_hallucination_detec/outputs
 data/cdcl-nli/rst_hallucination_detec/batch_inference_jsonl_version1
-data/cdcl-nli/rst_hallucination_detec/batch_inference_jsonl_version2
+# data/cdcl-nli/rst_hallucination_detec/batch_inference_jsonl_version2
 data/cdcl-nli/rst_hallucination_detec/batch_inference_jsonl_version3
 data/cdcl-nli/rst_hallucination_detec/batch_inference_result_version1
-data/cdcl-nli/rst_hallucination_detec/batch_inference_result_version2
+# data/cdcl-nli/rst_hallucination_detec/batch_inference_result_version2
 data/cdcl-nli/rst_hallucination_detec/batch_inference_result_version3
 data/cdcl-nli/rst_hallucination_detec/test_evaluation
 data/cdcl-nli/rst_hallucination_detec/test_files

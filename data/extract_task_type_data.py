@@ -33,7 +33,7 @@ def save_csv_format(task_data, task_type):
     # 选择主要字段用于CSV导出
     csv_columns = [
         'dataset', 'task_type', 'model', 'temperature', 'quality',
-        'query', 'context', 'output', 'hallucination_labels_processed'
+        'query', 'context', 'output', 'hallucination_labels_processed', 'hallucination_labels'
     ]
     
     # 处理复杂字段

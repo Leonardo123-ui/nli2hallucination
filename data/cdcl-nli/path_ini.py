@@ -31,6 +31,11 @@ class Config:
         self.base_dir = kwargs.get("base_dir", "/mnt/nlp/yuanmengying")
         self.batch_file_size = kwargs.get("batch_file_size", 1)
 
+        # LLM增强配置
+        self.use_llm_augmentation = kwargs.get("use_llm_augmentation", False)
+        self.llm_augmentation_method = kwargs.get("llm_augmentation_method", "multiply")  # multiply, concat, gating
+        self.llm_augmentation_sample_rate = kwargs.get("llm_augmentation_sample_rate", 1.0)  # 采样率: 0.0-1.0, 1.0表示所有样本都使用LLM
+
         # training set
         self.epochs = kwargs.get("epochs", 7)
         self.batch_size = kwargs.get("batch_size", 7)
@@ -91,32 +96,32 @@ class Config:
         self.paths = {
             "train": DataPaths(
                 rst_path=(
-                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/new_rst_result.jsonl"
+                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/train/new_rst_result.jsonl"
                 ),
                 nli_data_path=(
-                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/hallucination_train.json"
+                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen-q wen/hallucination_train.json"
                 ),
                 emb_path=(
-                    "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/node_embeddings.npz"
+                    "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/train/node_embeddings.npz"
                 ),
-                lexical_path="/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/train/lexical_matrixes.pkl",
-                pair_graph=r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/train",
+                lexical_path="/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/graph_info/train/lexical_matrixes.pkl",
+                pair_graph=r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/graph_pairs/train",
                 # pair_graph=r"/mlx/users/mengying.yuan/nli_code/data_processed/graph_pairs_shuffle_v3/train",
             ),
             "test": DataPaths(
                 rst_path=(
-                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/new_rst_result.jsonl"
+                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/test/new_rst_result.jsonl"
                 ),
                 nli_data_path=(
-                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/hallucination_test.json"
+                    r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/hallucination_test.json"
                 ),
                 emb_path=(
-                    "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/node_embeddings.npz"
+                    "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/test/node_embeddings.npz"
                 ),
         
-                lexical_path="/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/test/lexical_matrixes.pkl",
+                lexical_path="/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/graph_info/test/lexical_matrixes.pkl",
                 
-                pair_graph=r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_pairs/test",  
+                pair_graph=r"/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen/graph_pairs/test",  
             ),
         }
 

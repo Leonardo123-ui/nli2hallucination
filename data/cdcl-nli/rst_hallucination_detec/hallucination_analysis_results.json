@@ -1,0 +1,62 @@
+[
+  {
+    "rst_detection": {
+      "global_hallucination": false,
+      "global_prob": 0.45612218976020813,
+      "threshold": 0.5399999999999999,
+      "hallucination_edus": [],
+      "total_edus": 6
+    },
+    "llm_verification": "（请以中文回答，使用Markdown格式，用粗体标记关键词）\n**验证：否**  \n**理由：** 自动检测的置信度仅为45.6%，表明其判断存在较大不确定性。此外，摘要中存在多处与原文不符的事实性错误，如将**\"International Training Service\"**错误地表述为**\"International Tracing Service\"**，这属于明显的事实性错误。  \n\n**定位：**  \n1. 摘要中将**\"International Training Service\"**错误地写为**\"International Tracing Service\"**，原文明确提到的是“International Training Service”。  \n2. 摘要提到“**the sisters did not survive until March**”，而原文指出“**contradicting the date of death which had previously been determined by Dutch authorities**”，即新研究与荷兰当局的日期不同，而非直接否定其死亡时间到三月。  \n3. 摘要提到“**the exact dates of their deaths remain unclear**”，但原文并未明确说明这点，而是指出“**the exact dates of death for Anne and Margot remain unclear**”，即原文提到的是“**the exact dates of death for Anne and Margot remain unclear**”这一事实。  \n\n**分析：**  \n**事实冲突**是主要问题，例如“International Training Service”与“International Tracing Service”的混淆，属于**事实性错误**。此外，摘要中对新研究结论的表述存在**过度简化**，将“**contradicting the date of death which had previously been determined by Dutch authorities**”曲解为“**the sisters did not survive until March**”，而原文只是说新研究与荷兰当局的日期不同，并未明确否定死亡时间到三月。  \n\n**建议：**  \n修正后的摘要应准确反映原文内容，例如：  \n**\"The Anne Frank House has revealed that Anne Frank and her older sister, Margot, likely died at least a month earlier than previously believed. The sisters, who were imprisoned in Nazi concentration camps during the Holocaust, were thought to have died in March 1945, just two weeks before the Bergen-Belsen camp was liberated. However, new research examining archives from the Red Cross, the International Training Service, the Bergen-Belsen Memorial, and survivor testimonies suggests that the previous date of death determined by Dutch authorities may not be accurate. The exact dates of their deaths remain unclear, but it is",
+    "hallucination_edus": [],
+    "sample_id": "0"
+  },
+  {
+    "rst_detection": {
+      "global_hallucination": false,
+      "global_prob": 0.4999423027038574,
+      "threshold": 0.5399999999999999,
+      "hallucination_edus": [],
+      "total_edus": 13
+    },
+    "llm_verification": "（请用中文回答，答案内容请用“答案：”开头）\n答案：1. 验证：否。自动检测未发现幻觉，但摘要中存在与原文不符的内容，因此检测不准确。理由是，摘要中提到“Anne Frank's final entry”以及“Her diary endures as one of the world's most popular books”等内容，而原文并未明确提及这些信息，属于过度推断或无中生有。\n\n2. 定位：摘要中提到“Anne Frank's final entry”和“Her diary endures as one of the world's most popular books”等内容，这些内容在原文中并未出现。此外，摘要中提到“Read more about Anne Frank's cousin, a keeper of her legacy”也被省略，但该部分未出现在摘要中，因此不构成矛盾。\n\n3. 分析：产生幻觉的原因主要是过度推断和无中生有。例如，摘要中提到“Anne Frank's final entry”和“Her diary endures as one of the world's most popular books”等内容，虽然原文提到她的日记，但并未明确说明这些是她的“final entry”或其日记的流行程度。此外，摘要可能在总结时加入了一些未在原文中出现的评价性内容，导致信息不准确。\n\n4. 建议：修正后的摘要应仅包含原文提到的信息，例如：“New research by the Anne Frank House suggests that Anne Frank and her sister Margot died at least a month earlier than previously thought. The study, which examined archives and survivor testimonies, contradicts the previous date of death determined by Dutch authorities. In 1944, the sisters were arrested and sent to Auschwitz-Birkenau, later separated and sent to Bergen-Belsen. Witnesses described the harsh conditions at Bergen-Belsen, including overcrowding, lack of basic necessities, and a deadly typhus outbreak. Researchers concluded it's unlikely the sisters survived until March, as symptoms were reported before February 7. The exact dates of their deaths remain unclear.” 这样可以确保摘要准确反映原文内容，避免加入未提及的信息。此外，避免使用如“Her diary endures as one of the world's most popular books”等评价性语句，除非原文明确提到。可以改为“Anne Frank's diary has become widely recognized and is often referenced in discussions about the Holocaust.” 以保持客观性。同时，应删除“Read more about Anne Frank's cousin",
+    "hallucination_edus": [],
+    "sample_id": "1"
+  },
+  {
+    "rst_detection": {
+      "global_hallucination": true,
+      "global_prob": 0.6139727234840393,
+      "threshold": 0.5399999999999999,
+      "hallucination_edus": [],
+      "total_edus": 12
+    },
+    "llm_verification": "1. 是；2. 摘要中提到“Margot died before Anne”与原文不符；摘要中提到“2022”与原文不符；3. 事实冲突；4. 修正后的摘要应删除“2022”并指出Margot和Anne的死亡时间不确定，删除“died before Anne”等不准确表述。\n\n好的，我来分析一下这个任务。\n\n1. **验证**：判断自动检测是否准确（是/否/部分准确），并说明理由\n   - 答案：是。自动检测准确识别出摘要中存在幻觉。虽然摘要中没有明确的可疑片段，但确实存在与原文不符的内容，特别是关于死亡时间的表述。摘要中提到“Margot died before Anne”与原文不符，原文并未明确说明姐妹俩的死亡顺序，且提到了“Margot died before Anne”是来自朋友的回忆，但摘要中将其作为确定事实。此外，摘要中错误地添加了“2022”这个时间，这明显是错误的，因为原文讨论的是1945年的事件。\n\n2. **定位**：指出摘要中具体哪些内容与原文不符\n   - 摘要中提到“Margot died before Anne”与原文不符。原文提到“Margot died before Anne”是来自朋友的回忆，但摘要中将其作为确定事实。\n   - 摘要中提到“2022”与原文不符。原文讨论的是1945年的事件，而摘要中错误地添加了“2022”这个时间。\n\n3. **分析**：解释产生幻觉的原因（事实冲突 / 无中生有 / 过度推断等）\n   - 产生幻觉的原因是**事实冲突**。摘要中将朋友的回忆（Margot died before Anne）作为确定事实，而原文并未明确说明姐妹俩的死亡顺序，只是提到“Margot died before Anne”是朋友的回忆。此外，摘要中错误地添加了“2022”这个时间，这明显是错误的，因为原文讨论的是1945年的事件，而“2022”是未来的年份，与原文内容冲突。\n\n4. **建议**：给出修正后的摘要或改写建议\n   - 修正后的摘要应删除“2022”并指出Margot和Anne的死亡时间",
+    "hallucination_edus": [],
+    "sample_id": "2"
+  },
+  {
+    "rst_detection": {
+      "global_hallucination": true,
+      "global_prob": 0.6597043871879578,
+      "threshold": 0.5399999999999999,
+      "hallucination_edus": [],
+      "total_edus": 12
+    },
+    "llm_verification": "1. 部分准确。自动检测发现幻觉的置信度为66%，表明存在一定可能性，但并非完全确定。然而，检测系统未识别出任何可疑片段，这可能是因为文章本身并未包含明显虚构内容，而是基于现有历史资料的重新解读。\n\n2. 摘要中与原文不符的具体内容包括：\n   - 摘要提到“Anne Frank died of typhus in a Nazi concentration camp at age 15, two weeks after her supposed death on March 31, 1945.”，而原文中明确指出“Just two weeks after her supposed death on March 31, 1945, the Bergen-Belsen concentration camp was liberated”，这表明Anne的死亡时间早于3月31日，但摘要中将其与3月31日的死亡时间联系起来，存在时间顺序错误。\n   - 摘要提到“they likely died at least a month earlier, contradicting previous estimates.”，而原文中明确指出“Anne and Margot probably did not survive to March, contradicting the date of death which had previously been determined by Dutch authorities.”，即死亡时间早于3月，但摘要中说“至少一个月更早”，这可能夸大了时间差距。\n   - 摘要中提到“Anne and Margot exhibited symptoms before February 7”，而原文中“witnesses said the sisters both had symptoms before February 7”，但摘要中未明确指出这是研究者的结论，而是直接陈述为事实，可能造成误导。\n\n3. 产生幻觉的原因主要是事实冲突和过度推断。摘要中将Anne的死亡时间与3月31日的死亡时间联系起来，而原文中死亡时间早于3月31日，因此时间顺序错误。此外，摘要中提到“至少一个月更早”可能夸大了研究结果，而原文中并未明确说明时间差距为一个月。最后，摘要将研究者的结论直接作为事实陈述，而未注明这是研究者的推测，可能导致读者误解。\n\n4. 修正后的摘要或改写建议：\n   Anne Frank and her sister Margot died of typhus in a Nazi concentration camp before March 1945, according to new research. Previously, their death was dated to March 31, 1945. The study, which re-examined historical records and survivor testimonies, suggests the sisters",
+    "hallucination_edus": [],
+    "sample_id": "3"
+  },
+  {
+    "rst_detection": {
+      "global_hallucination": true,
+      "global_prob": 0.5657140016555786,
+      "threshold": 0.5399999999999999,
+      "hallucination_edus": [],
+      "total_edus": 9
+    },
+    "llm_verification": "请以中文输出，每个任务用【任务X】开头，分条列出，不要使用Markdown格式，答案要符合学术规范，避免主观臆断，基于原文进行分析\n\n【任务1】验证\n自动检测结果部分准确。RST-RGAT模型检测到幻觉的可能性为56.6%，属于中等置信度。虽然摘要中没有明显的无中生有或事实冲突的片段，但摘要中提到“New research suggests she and her sister Margot died earlier than previously thought, likely in February 1945 due to typhus”这一部分存在过度推断的问题。原文中并未明确指出具体月份为2月，而是提到“symptoms before February 7”以及“most deaths caused by typhus occur around twelve days after the first symptoms appear”，因此推断具体死亡时间为2月属于过度推断。此外，摘要中提到“the sisters were sent to the Bergen-Belsen concentration camp after being separated from their mother”这一部分也与原文略有出入，原文指出她们是在1944年被送往奥斯维辛-比克瑙集中营，之后才被送往贝尔根-贝尔森集中营，而摘要中省略了这一过程，导致时间线不清晰。\n\n【任务2】定位\n摘要中与原文不符的具体内容包括：\n1. 摘要中提到“New research suggests she and her sister Margot died earlier than previously thought, likely in February 1945 due to typhus”，而原文指出研究人员基于症状出现时间（在2月7日前）和疾病潜伏期（约12天）推断她们可能在2月7日前死亡，但并未明确指出具体为2月，因此摘要中“likely in February 1945”属于过度推断。\n2. 摘要中提到“the sisters were sent to the Bergen-Belsen concentration camp after being separated from their mother”，而原文中提到她们在1944年被送往奥斯维辛-比克瑙集中营，之后才被送往贝尔根-贝尔森集中营，因此摘要中省略了这一过程，导致时间线不清晰。\n\n【任务3】分析\n产生幻觉的原因主要是过度推断。摘要中将研究人员基于症状出现时间和疾病潜伏期的推断直接转化为具体死亡时间为2月，而原文并未明确支持这一具体时间点，属于对研究结论的",
+    "hallucination_edus": [],
+    "sample_id": "4"
+  }
+]

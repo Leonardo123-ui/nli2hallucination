@@ -96,7 +96,7 @@ class RSTDataset(Dataset):
         self.save_dir = save_dir
 
         # Ensure the save directory exists
-        # os.makedirs(self.save_dir, exist_ok=True)
+        os.makedirs(self.save_dir, exist_ok=True)
         # Store pre-built graphs to avoid building them during training
         self.graph_pairs = []
 
@@ -226,22 +226,24 @@ class RSTDataset(Dataset):
 
 if __name__ == "__main__":
     base_data_dir = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data"
+    processed_dir = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen"
     dir = "graph_info"
-    type_list = ["train", "test"]
+    # type_list = ["train", "test"]
+    type_list = ["train"]
     batch_file_size = 1
     for type in type_list:
         print("*" * 30, type, "*" * 30)
-        train_rst_path = f"{base_data_dir}/{type}/new_rst_result.jsonl"
+        train_rst_path = f"{processed_dir}/{type}/new_rst_result.jsonl"
         train_nli_data_path = (
             f"{base_data_dir}/hallucination_{type}.json"  # train_re_hyp.json
         )
 
-        train_emb_path = f"{base_data_dir}/{type}/node_embeddings.npz"
+        train_emb_path = f"{processed_dir}/{type}/node_embeddings.npz"
 
         train_lexical_path = (
-            f"{base_data_dir}/{dir}/{type}/lexical_matrixes.pkl"
+            f"{processed_dir}/{dir}/{type}/lexical_matrixes.pkl"
         )
-        train_pair_graph = f"{base_data_dir}/graph_pairs/{type}"
+        train_pair_graph = f"{processed_dir}/graph_pairs/{type}"
         train_dataset = RSTDataset(
             train_rst_path,
             train_nli_data_path,

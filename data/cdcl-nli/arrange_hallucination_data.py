@@ -306,23 +306,31 @@ class HallucinationDataProcessor:
                     print(f"已处理: {count} 个样本")
                 count += 1
 
-                # 每1000个样本保存一次
-                if count % 1000 == 0:
+                # 每5000个样本保存一次
+                if count % 5000 == 0:
                     os.makedirs(self.save_dir, exist_ok=True)
                     rst_name = f"{count}_rst_result.jsonl"
                     self.write_jsonl(os.path.join(self.save_dir, rst_name), rst_results)
                     rst_results = []
 
         # 保存剩余结果
-        if rst_results and count < 1000:
+        if rst_results and count < 5000:
             os.makedirs(self.save_dir, exist_ok=True)
             self.write_jsonl(rst_results_store_path, rst_results)
             print(f"保存了 {len(rst_results)} 条 RST 结果")
         elif rst_results:
             os.makedirs(self.save_dir, exist_ok=True)
-            rst_name = f"{count}_left_rst_result.jsonl"
+            rst_name = f"{count}_rst_result.jsonl"
             self.write_jsonl(os.path.join(self.save_dir, rst_name), rst_results)
-
+            # 按照文件名顺序合并所有的 RST 结果
+            all_rst_results = []
+            rst_files = sorted(glob.glob(os.path.join(self.save_dir, "*.jsonl")))
+            for rst_file in rst_files:
+                with open(rst_file, "r") as file:
+                    for line in file:
+                        rst_dict = json.loads(line.strip())
+                        all_rst_results.append(rst_dict)
+            self.write_jsonl(rst_results_store_path, all_rst_results)
         print(f"剩余 RST 结果长度: {len(rst_results)}")
         return rst_results
 
@@ -400,7 +408,7 @@ class ModernBERTEmbedder:
     def get_stored_rst(self, paths):
         """读取保存的 RST 结果"""
         rst_results = []
-        if isinstance(paths, list):
+        if isinstance(paths, list): # warning 要按照顺序读取
             for path in paths:
                 with open(path, "r") as file:
                     for line in file:
@@ -619,20 +627,29 @@ class ModernBERTEmbedder:
                 }
             )
 
-            # 每1000个样本保存一次
-            if (i % 1000) == 0 and (i != 0):
+            # 每5000个样本保存一次
+            if (i % 5000) == 0 and (i != 0):
                 filename = output_file.replace('.npz', f'_{i}.npz')
                 torch.save(data_to_save, filename)
                 data_to_save = []
                 print(f"已保存 {i} 对")
 
         # 保存剩余数据
-        if data_to_save and i < 1000:
+        if data_to_save and i < 5000:
             filename = output_file
             torch.save(data_to_save, filename)
         elif data_to_save:
             filename = output_file.replace('.npz', f'_{i}.npz')
+            print('超过5000，保存剩余数据到:', filename)
             torch.save(data_to_save, filename)
+            # 按照文件名顺序合并所有的数据
+            all_data_to_save = []
+            npz_files = sorted(glob.glob(os.path.join(self.save_dir, "*.npz")))
+            for npz_file in npz_files:
+                data = torch.load(npz_file)
+                all_data_to_save.extend(data)
+            torch.save(all_data_to_save, output_file)
+            print(f"已合并所有数据到 {output_file}")
 
         print("所有 embeddings 已生成")
         return data_to_save
@@ -896,55 +913,66 @@ def load_all_data(data_processor, data_path, rst_path):
 
 if __name__ == "__main__":
     # 配置参数
-    MODEL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/models/modern-bert_large"
-    OVERALL_SAVE_DIR = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data"
-    GRAPH_INFOS_DIR = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info"
+    # MODEL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/models/modern-bert_large"
+    MODEL_PATH = "/mnt/second/yuanmengying/qwen3-emb-0.6"
+    OVERALL_SAVE_DIR = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data-qwen"
+    GRAPH_INFOS_DIR = os.path.join(OVERALL_SAVE_DIR, "graph_info")
 
     ensure_parent_directory(OVERALL_SAVE_DIR)
 
     # 训练集路径
-    TRAIN_DATA_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/hallucination_train.json"
-    TRAIN_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/rst_result.jsonl"
-    TRAIN_RE_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/new_rst_result.jsonl"
-    TRAIN_PRE_EMB_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/node_embeddings.npz"
-    TRAIN_LEXICAL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/train/lexical_matrixes.pkl"
+    TRAIN_DATA_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/hallucination_train.json"    
+    TRAIN_RST_RESULT_PATH = os.path.join(OVERALL_SAVE_DIR, "train", "rst_result.jsonl")
+    TRAIN_RE_RST_RESULT_PATH = os.path.join(OVERALL_SAVE_DIR, "train", "new_rst_result.jsonl")
+    TRAIN_PRE_EMB_PATH = os.path.join(OVERALL_SAVE_DIR, "train", "node_embeddings.npz")
+    TRAIN_LEXICAL_PATH = os.path.join(GRAPH_INFOS_DIR, "train", "lexical_matrixes.pkl")
+
+    # TRAIN_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/rst_result.jsonl"
+    # TRAIN_RE_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/new_rst_result.jsonl"
+    # TRAIN_PRE_EMB_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/train/node_embeddings.npz"
+    # TRAIN_LEXICAL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/train/lexical_matrixes.pkl"
 
     # 测试集路径
     TEST_DATA_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/hallucination_test.json"
-    TEST_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/rst_result.jsonl"
-    TEST_RE_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/new_rst_result.jsonl"
-    TEST_PRE_EMB_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/node_embeddings.npz"
-    TEST_LEXICAL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/test/lexical_matrixes.pkl"
+    TEST_RST_RESULT_PATH = os.path.join(OVERALL_SAVE_DIR, "test", "rst_result.jsonl")
+    TEST_RE_RST_RESULT_PATH = os.path.join(OVERALL_SAVE_DIR, "test", "new_rst_result.jsonl")
+    TEST_PRE_EMB_PATH = os.path.join(OVERALL_SAVE_DIR, "test", "node_embeddings.npz")
+    TEST_LEXICAL_PATH = os.path.join(GRAPH_INFOS_DIR, "test", "lexical_matrixes.pkl")
+
+    # TEST_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/rst_result.jsonl"
+    # TEST_RE_RST_RESULT_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/new_rst_result.jsonl"
+    # TEST_PRE_EMB_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/test/node_embeddings.npz"
+    # TEST_LEXICAL_PATH = "/mnt/nlp/yuanmengying/nli2hallucination/data/cdcl-nli/data/graph_info/test/lexical_matrixes.pkl"
 
     print("="*60)
     print("开始处理训练集")
     print("="*60)
 
-    # # 处理训练集
-    # data_processor_train = HallucinationDataProcessor(True, OVERALL_SAVE_DIR, "train")
-    # train_data, train_rst_result = load_all_data(
-    #     data_processor_train, TRAIN_DATA_PATH, TRAIN_RE_RST_RESULT_PATH
-    # )
+    # 处理训练集
+    data_processor_train = HallucinationDataProcessor(True, OVERALL_SAVE_DIR, "train")
+    train_data, train_rst_result = load_all_data(
+        data_processor_train, TRAIN_DATA_PATH, TRAIN_RST_RESULT_PATH
+    )
 
-    # embedder_train = ModernBERTEmbedder(MODEL_PATH, GRAPH_INFOS_DIR, "train", True)
+    embedder_train = ModernBERTEmbedder(MODEL_PATH, GRAPH_INFOS_DIR, "train", True)
 
-    # train_rst_results_store_paths = glob.glob(
-    #     os.path.join(os.path.join(OVERALL_SAVE_DIR, "train"), "*.jsonl")
-    # )
-    # print(f"训练集 RST 结果路径: {train_rst_results_store_paths}")
+    train_rst_results_store_paths = glob.glob(
+        os.path.join(os.path.join(OVERALL_SAVE_DIR, "train"), "*.jsonl")
+    )
+    print(f"训练集 RST 结果路径: {train_rst_results_store_paths}")
 
-    # train_new_rst_results = embedder_train.rewrite_rst_result(
-    #     train_rst_results_store_paths,
-    #     TRAIN_RE_RST_RESULT_PATH,
-    # )
+    train_new_rst_results = embedder_train.rewrite_rst_result(
+        train_rst_results_store_paths,
+        TRAIN_RE_RST_RESULT_PATH,
+    )
 
-    # # train_node_string_pairs = embedder_train.get_node_string_pair(
-    # #     train_new_rst_results, TRAIN_PRE_EMB_PATH
-    # # )
+    train_node_string_pairs = embedder_train.get_node_string_pair(
+        train_new_rst_results, TRAIN_PRE_EMB_PATH
+    )
 
-    # train_matrix = embedder_train.store_or_get_lexical_matrixes(
-    #     TRAIN_RE_RST_RESULT_PATH, TRAIN_PRE_EMB_PATH, TRAIN_LEXICAL_PATH
-    # )
+    train_matrix = embedder_train.store_or_get_lexical_matrixes(
+        TRAIN_RE_RST_RESULT_PATH, TRAIN_PRE_EMB_PATH, TRAIN_LEXICAL_PATH
+    )
 
     print("\n" + "="*60)
     print("开始处理测试集")

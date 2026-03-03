@@ -387,7 +387,7 @@ class RGAT(nn.Module):
                 rel: dglnn.GATConv(
                     in_feats=in_dim,
                     out_feats=hidden_dim,
-                    num_heads=4,
+                    num_heads=1,
                     feat_drop=0.1,
                     attn_drop=0.1,
                     residual=True,
@@ -402,11 +402,11 @@ class RGAT(nn.Module):
         self.conv2 = dglnn.HeteroGraphConv(
             {
                 rel: dglnn.GATConv(
-                    in_feats=hidden_dim * 4,
-                    out_feats=out_dim,  # 保持原来的 out_dim
-                    num_heads=4,  # 增加到 4 个头（从 1）
-                    feat_drop=0.15,  # 增加 dropout（从 0.1）
-                    attn_drop=0.15,  # 增加 attention dropout
+                    in_feats=hidden_dim,
+                    out_feats=out_dim,
+                    num_heads=1,
+                    feat_drop=0.1,
+                    attn_drop=0.1,
                     residual=True,
                     allow_zero_in_degree=True,
                 )
@@ -415,7 +415,7 @@ class RGAT(nn.Module):
             aggregate="mean",
         )
 
-        self.dropout = nn.Dropout(0.2)  # 增加 dropout（从 0.1）
+        self.dropout = nn.Dropout(0.1)
 
     def forward(self, g, inputs, return_attention=False):
         """
@@ -453,8 +453,8 @@ class RGAT(nn.Module):
 
         # Second convolution layer
         h = self.conv2(g, h)
-        # 无论有多少个注意力头，都需要 flatten 而不是 squeeze
-        out = {k: v.flatten(1) for k, v in h.items()}
+        # squeeze操作将[num_nodes, 1, hidden_dim]转换为[num_nodes, hidden_dim]
+        out = {k: v.squeeze(1) for k, v in h.items()}
 
         if return_attention:
             # Compute node importance
@@ -674,13 +674,6 @@ class ExplainableHeteroClassifier(nn.Module):
             nn.Linear(hidden_dim, n_classes),
         )
 
-        # 投影层：将多头注意力输出的高维特征投影到分类器期望的维度
-        # RGAT conv2 with 4 heads outputs [batch_size, 4*256] = [batch_size, 1024]
-        # 实际上如果调试显示[10, 4096]，说明每个图表示是4096
-        # 三个图表示连接: [batch_size, 12288]
-        # 分类器期望 [batch_size, hidden_dim*3] = [batch_size, 768]
-        self.graph_repr_proj = nn.Linear(4096 * 3, hidden_dim * 3)
-
         self.rgat_generation = RGAT(
             in_dim=in_dim,
             hidden_dim=hidden_dim,
@@ -837,13 +830,13 @@ class ExplainableHeteroClassifier(nn.Module):
         """
         轻量级方法：仅获取图表示
         Returns:
-            graph_repr: 图表示 [batch_size, hidden_dim*num_heads]
+            graph_repr: 图表示 [batch_size, hidden_dim]
         """
         node_feats = self.rgat_classification(
             graph, {"node": graph.ndata["feat"]}, return_attention=False
         )
 
-        # 获取节点特征 - 现在应该已经是 [num_nodes, flattened_dim]
+        # 获取节点特征
         node_feat_tensor = node_feats["node"]
 
         # 检查是否是批处理图
@@ -883,11 +876,7 @@ class ExplainableHeteroClassifier(nn.Module):
 
     def classify(self, pre_graph_repr, hyp_graph_repr, graph_repr):
         """Encode input graph"""
-        # 1. Concatenate graph representations
         combined_features = torch.cat([pre_graph_repr, hyp_graph_repr, graph_repr], dim=1)
-        # 2. Project to classifier input dimension
-        combined_features = self.graph_repr_proj(combined_features)
-        # 3. Classify
         logits = self.classifier(combined_features)
         return logits
 

@@ -3,6 +3,7 @@ from collections import defaultdict
 from nltk.translate.bleu_score import corpus_bleu
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
+from sklearn.metrics import precision_recall_fscore_support
 
 smoothing_function = SmoothingFunction().method1
 
@@ -29,7 +30,7 @@ def accuracy_score(y_true, y_pred):
 
 def precision_score(y_true, y_pred, average="macro"):
     """
-    Calculate precision
+    Calculate precision using sklearn's precision_recall_fscore_support
 
     Args:
     y_true: List or array of true labels
@@ -45,29 +46,16 @@ def precision_score(y_true, y_pred, average="macro"):
     if len(y_true) != len(y_pred):
         raise ValueError("y_true and y_pred must have the same length.")
 
-    labels = np.unique(np.concatenate([y_true, y_pred]))
-    precisions = []
+    precision, _, _, _ = precision_recall_fscore_support(
+        y_true, y_pred, labels=[0, 1], average=average, zero_division=0
+    )
 
-    for label in labels:
-        true_positives = np.sum((y_true == label) & (y_pred == label))
-        predicted_positives = np.sum(y_pred == label)
-
-        if predicted_positives == 0:
-            precision = 0.0
-        else:
-            precision = true_positives / predicted_positives
-
-        precisions.append(precision)
-
-    if average == "macro":
-        return np.mean(precisions)
-    else:
-        raise ValueError("Only 'macro' averaging method is currently supported")
+    return precision
 
 
 def recall_score(y_true, y_pred, average="macro"):
     """
-    Calculate recall
+    Calculate recall using sklearn's precision_recall_fscore_support
 
     Args:
     y_true: List or array of true labels
@@ -83,29 +71,16 @@ def recall_score(y_true, y_pred, average="macro"):
     if len(y_true) != len(y_pred):
         raise ValueError("y_true and y_pred must have the same length.")
 
-    labels = np.unique(np.concatenate([y_true, y_pred]))
-    recalls = []
+    _, recall, _, _ = precision_recall_fscore_support(
+        y_true, y_pred, labels=[0, 1], average=average, zero_division=0
+    )
 
-    for label in labels:
-        true_positives = np.sum((y_true == label) & (y_pred == label))
-        actual_positives = np.sum(y_true == label)
-
-        if actual_positives == 0:
-            recall = 0.0
-        else:
-            recall = true_positives / actual_positives
-
-        recalls.append(recall)
-
-    if average == "macro":
-        return np.mean(recalls)
-    else:
-        raise ValueError("Only 'macro' averaging method is currently supported")
+    return recall
 
 
 def f1_score(y_true, y_pred, average="macro"):
     """
-    Calculate F1 score
+    Calculate F1 score using sklearn's precision_recall_fscore_support
 
     Args:
     y_true: List or array of true labels
@@ -115,13 +90,17 @@ def f1_score(y_true, y_pred, average="macro"):
     Returns:
     float: F1 score
     """
-    precision = precision_score(y_true, y_pred, average=average)
-    recall = recall_score(y_true, y_pred, average=average)
+    y_true = np.array(y_true)
+    y_pred = np.array(y_pred)
 
-    if precision + recall == 0:
-        return 0.0
-    else:
-        return 2 * (precision * recall) / (precision + recall)
+    if len(y_true) != len(y_pred):
+        raise ValueError("y_true and y_pred must have the same length.")
+
+    _, _, f1, _ = precision_recall_fscore_support(
+        y_true, y_pred, labels=[0, 1], average=average, zero_division=0
+    )
+
+    return f1
 
 
 def is_best_model(current_results, best_results, stage):

@@ -36,9 +36,10 @@ from collections import defaultdict
 import torch.multiprocessing as mp
 
 # 多进程配置
-from tqdm import tqdm 
+from tqdm import tqdm
 import random
 import logging
+
 
 def set_seed(seed=42):
     """
@@ -122,12 +123,10 @@ class FocalLoss(nn.Module):
         else:
             return focal_loss
 
-# ===================================================================
 # Focal loss with enhanced class weights to handle imbalance
-# alpha=[0.9, 3.6]: 更激进的少数类权重
-# gamma=2.5: 更强的难样本关注
-# label_smoothing=0.1: 防止过度自信
-criterion = FocalLoss(alpha=[0.9, 3.6], gamma=2.5, label_smoothing=0.1)
+# 使用基于类别比例的权重：minority_class_ratio ≈ 1/3.8
+# Model 10: 更激进的少数类加权 (alpha=[0.8, 3.8])
+criterion = FocalLoss(alpha=[0.8, 3.8], gamma=2.0, label_smoothing=0.1)
 
 rel_names_long = [
     "Temporal",
@@ -484,6 +483,39 @@ graph_augmentor = GraphAugmentation(edge_drop_prob=0.1, node_perturb_ratio=0.05)
 # ===================================================================
 
 
+def extract_graph_text(graph, max_nodes=5):
+    """
+    从图中提取节点文本内容
+
+    Args:
+        graph: DGL图
+        max_nodes: 最多提取的节点数量(避免文本过长)
+
+    Returns:
+        提取的文本字符串
+    """
+    texts = []
+    num_nodes = min(graph.num_nodes(), max_nodes)
+
+    for node_id in range(num_nodes):
+        try:
+            if "text_encoded" in graph.ndata:
+                encoded = graph.ndata["text_encoded"][node_id]
+                # 转换为字节
+                if isinstance(encoded, torch.Tensor):
+                    byte_data = bytes(encoded.cpu().numpy().astype(int)).rstrip(b"\0")
+                else:
+                    byte_data = bytes(encoded).rstrip(b"\0")
+                # Base64解码
+                text = base64.b64decode(byte_data).decode("utf-8")
+                if text.strip():
+                    texts.append(text.strip())
+        except Exception as e:
+            continue
+
+    return " ".join(texts) if texts else ""
+
+
 def collate_fn(batch):
     (
         g_premise,
@@ -501,7 +533,7 @@ def collate_fn(batch):
 
 
 def process_batch(
-    model, batch_data, device, task, stage="train", optimizer=None, scheduler=None, accumulation_steps=2, step_now=None
+    model, batch_data, device, task, stage="train", optimizer=None, scheduler=None, accumulation_steps=2, step_now=None, llm_client=None, config=None
 ):
     model.train() if stage == "train" else model.eval()
     """处理一个batch的通用逻辑"""
@@ -512,11 +544,71 @@ def process_batch(
         graph1 = [graph_augmentor.augment(g) for g in graph1]
         graph2 = [graph_augmentor.augment(g) for g in graph2]
 
+    # 应用LLM增强（如果LLM客户端可用且配置启用）
+    use_llm_aug = (
+        llm_client is not None and
+        stage == "train" and
+        config is not None and
+        config.use_llm_augmentation
+    )
+
+    if use_llm_aug:
+        try:
+            # 导入LLM增强模块
+            from llm_graph_augmentation import augment_batch_graphs
+
+            logging.debug(f"对 {len(graph1)} 个样本进行LLM增强...")
+
+            # 获取采样率配置
+            sample_rate = config.llm_augmentation_sample_rate if config else 1.0
+
+            # 为每个样本生成rationale
+            rationales = []
+            llm_call_count = 0
+            for i in range(len(graph1)):
+                # 采样策略: 只对部分样本调用LLM
+                if random.random() > sample_rate:
+                    rationales.append("")  # 不使用LLM增强
+                    continue
+
+                try:
+                    # 从图中提取实际的前提和假设文本
+                    premise_text = extract_graph_text(graph1[i], max_nodes=5)
+                    hypothesis_text = extract_graph_text(graph2[i], max_nodes=5)
+
+                    # 如果文本为空,使用空rationale
+                    if not premise_text or not hypothesis_text:
+                        logging.debug(f"样本{i}文本为空,使用空rationale")
+                        rationales.append("")
+                        continue
+
+                    # 使用实际文本生成rationale
+                    rationale = llm_client.call_llm(
+                        system_prompt="你是一名NLI分析员。请简要分析前提和假设之间的逻辑关系。",
+                        user_input=f"前提: {premise_text[:200]}\n假设: {hypothesis_text[:200]}\n\n请列出关键的不一致或一致之处(50字以内):",
+                        max_tokens=100
+                    )
+                    rationales.append(rationale)
+                    llm_call_count += 1
+                except Exception as e:
+                    logging.warning(f"为样本{i}生成rationale失败: {e}，使用空rationale")
+                    rationales.append("")
+
+            # 应用LLM增强到批次中的所有图
+            augmentation_method = config.llm_augmentation_method if config else "multiply"
+            graph1, graph2 = augment_batch_graphs(graph1, graph2, rationales, method=augmentation_method)
+            logging.info(f"✓ LLM增强完成: {len(graph1)} 个样本, 实际调用LLM: {llm_call_count} 次 (采样率: {sample_rate:.1%}, 方法: {augmentation_method})")
+
+        except ImportError:
+            logging.warning("无法导入llm_graph_augmentation模块，跳过LLM增强")
+        except Exception as e:
+            logging.warning(f"LLM增强失败: {e}，使用原始图")
+
     batch_loss = 0
     batch_size = len(graph1)
-    # 合并图
+    # 合并图 - 回到Model 3的配置使用rel_names_long
     combined_graphs = [
-        model.merge_graphs(g_p1, g_p2, lc, rel_names_medium)   # 使用优化的15个关键关系
+        model.merge_graphs(g_p1, g_p2, lc, rel_names_long)   # 回到原始的所有关系
         for g_p1, g_p2, lc in zip(graph1, graph2, lexical_chain)
     ]
 
@@ -551,13 +643,6 @@ def process_batch(
     predicted_cli_batch = []
     labels_cli_batch = []
     classification_losses = []
-
-    # 调试：打印形状信息（仅在第一个batch）
-    if step_now == 0:
-        print(f"DEBUG: pre_graph_repr shape: {pre_graph_repr.shape}")
-        print(f"DEBUG: hyp_graph_repr shape: {hyp_graph_repr.shape}")
-        print(f"DEBUG: graph_repr shape: {graph_repr.shape}")
-        print(f"DEBUG: batch_size: {batch_size}")
 
     cli_logits = model.classify(pre_graph_repr, hyp_graph_repr, graph_repr)
     cls_loss = criterion(cli_logits, targets)  # Use global focal loss criterion
@@ -600,37 +685,37 @@ def process_batch(
 
 
 
-def train_epoch(model, dataloader, optimizer, scheduler, task, device, accumulation_steps=2, epoch=None, save_dir="./"):
+def train_epoch(model, dataloader, optimizer, scheduler, task, device, accumulation_steps=2, epoch=None, save_dir="./", llm_client=None, config=None):
     """训练一个epoch"""
     model.train()
     epoch_losses = defaultdict(float)
-    
+
     # 2. 将 dataloader 包装在 tqdm 中
     # total=len(dataloader) 可以让进度条知道总步数
     # desc 是进度条的描述信息
     progress_bar = tqdm(
-        dataloader, 
-        total=len(dataloader), 
+        dataloader,
+        total=len(dataloader),
         desc=f"Epoch {epoch or 1} Training" # 使用 epoch 编号作为描述
     )
 
     # 3. 遍历 progress_bar 而不是 dataloader
-    for i, batch_data in enumerate(progress_bar): 
-        
+    for i, batch_data in enumerate(progress_bar):
+
         batch_metrics = process_batch(
-            model, batch_data, device, task, "train", optimizer, scheduler, accumulation_steps, i
+            model, batch_data, device, task, "train", optimizer, scheduler, accumulation_steps, i, llm_client=llm_client, config=config
         )
-        
+
         for loss_name, loss_value in batch_metrics["losses"].items():
             epoch_losses[loss_name] += loss_value
-            
+
             # 4. (可选但推荐) 在进度条上实时显示当前批次的损失
             # 注意：这里需要确保 loss_value 是一个Python数值（float），而不是Tensor
             if isinstance(loss_value, torch.Tensor):
                 display_value = loss_value.item()
             else:
                 display_value = loss_value
-            
+
             progress_bar.set_postfix({loss_name: f"{display_value:.4f}"})
 
     # 循环结束后，i 仍然是最后一个索引
@@ -713,18 +798,49 @@ def main():
         logging.info(f"Using device: {device}")
 
         config, train_dataset, test_dataset = data_model_loader(device)
+        LLM_AVAILABLE = False
+        if config.use_llm_augmentation:
+            try:
+                from main import QwenLLMClient, QwenConfig, ModelDeployType
+                LLM_AVAILABLE = True
+                logger_llm = logging.getLogger(__name__)
+                logger_llm.info("LLM模块已加载")
+            except ImportError as e:
+                LLM_AVAILABLE = False
+                logger_llm = logging.getLogger(__name__)
+                logger_llm.warning(f"无法导入LLM模块: {e}")
+        # 初始化LLM客户端
+        llm_client = None
+        if LLM_AVAILABLE:
+            try:
+                logging.info("初始化Qwen LLM客户端...")
+                llm_config = QwenConfig(
+                    model_name="/mnt/second/yuanmengying/qwen3-8b",
+                    deploy_type=ModelDeployType.HUGGINGFACE,
+                )
+                llm_client = QwenLLMClient(config=llm_config)
+                logging.info("[✓] LLM客户端初始化完成")
+            except Exception as e:
+                logging.warning(f"LLM客户端初始化失败: {e}")
+                llm_client = None
+        else:
+            logging.warning("未使用LLM模块")
         config.device = device
-        config.save_dir = "checkpoints/experiment_6"
+        config.save_dir = "checkpoints/experiment_qwen1-nollm"
         config.mode = "train"
         config.stage = "classification"  # classification / generation / joint
-        config.epochs = 25  # Increased from 20 for better convergence with focal loss
+        config.epochs = 20  # Increased from 20 for better convergence with focal loss
         config.lr = 2e-5  # Conservative increase from 1e-5 to 2e-5
         config.batch_size = 10
         stage = config.stage
         config.eval_interval = 1
-        
-        #   888 = 296 * 3 origin train data
-        # all_train_data: 22200 = 7400 * 3 ; num_files : 20 
+
+        # LLM增强配置 - 可以在这里设置是否启用
+        # config.use_llm_augmentation = True  # 设置为True以启用LLM增强
+        # config.llm_augmentation_method = "multiply"  # multiply, concat, gating
+        # config.llm_augmentation_sample_rate = 0.3  # 采样率: 0.3表示只对30%的样本使用LLM(减少开销)
+
+
         
         train_loader = get_dataloader(train_dataset, config.batch_size, 0)
         test_loader = get_dataloader(test_dataset, config.batch_size, 0, shuffle=False)
@@ -745,16 +861,15 @@ def main():
         # AdamW optimizer with enhanced regularization
         optimizer = AdamW(
             model.parameters(),
-            lr=config.lr,  # Will be 2e-5 from config
-            weight_decay=1e-3,  # 增加正则化（从 1e-4）
+            lr=config.lr,  # 2e-5 from config
+            weight_decay=1e-4,
             eps=1e-8,
             betas=(0.9, 0.999),
-            amsgrad=True,  # 使用 AMSGrad 变体，更稳定的收敛
         )
 
         num_training_steps = config.total_steps
         logging.info(f"Total training steps: {num_training_steps}")
-        num_warmup_steps = int(num_training_steps * 0.25)  # 增加预热到 25%（从 20%）
+        num_warmup_steps = int(num_training_steps * 0.2)  # 20% warmup
         logging.info(f"Total warmup steps: {num_warmup_steps}")
         scheduler = get_cosine_schedule_with_warmup(
             optimizer,
@@ -777,11 +892,15 @@ def main():
         # 初始化指标跟踪器
         metrics_tracker = MetricsTracker()
 
+        # 早停机制
+        patience = 5  # 5个epoch没有改进就停止
+        patience_counter = 0
+        best_val_f1 = 0  # 基于验证集（测试集）的最佳F1
+
         # 训练循环
 
         logging.info(f"Starting {config.mode}  ==  {stage} task...")
         best_classification_f1 = 0
-        best_joint_f1 = 0
         for epoch in range(start_epoch, config.epochs):
             accumulation_steps = 2  # 4
             logging.info(f"Epoch {epoch} starting")
@@ -795,6 +914,8 @@ def main():
                 accumulation_steps=accumulation_steps,
                 epoch=epoch,
                 save_dir=config.save_dir,
+                llm_client=llm_client,
+                config=config,
             )
             logging.info(f"Epoch {epoch} finished\ntraining losses: {train_losses}")
           
@@ -836,12 +957,13 @@ def main():
                 eval_results["classification_metrics"],
                 stage,
             )
-            if stage == "classification" and is_best_model(
-                eval_results, best_classification_f1, stage
-            ):  # 分类任务，用f1指标
-                best_classification_f1 = eval_results["classification_metrics"][
-                    "f1_macro_cli"
-                ]
+
+            # 基于测试集性能的模型选择和早停
+            val_f1 = eval_results["classification_metrics"]["f1_macro_cli"]
+            if val_f1 > best_val_f1:
+                # 验证集有改进
+                best_val_f1 = val_f1
+                patience_counter = 0
                 model_path = os.path.join(config.save_dir, f"best_{stage}_model.pt")
                 save_model(
                     model,
@@ -852,8 +974,19 @@ def main():
                     metrics=eval_results["classification_metrics"],
                 )
                 logging.info(
-                    f"New best classification model saved with metric: {best_classification_f1:.4f}"
+                    f"✓ Validation F1 improved to {val_f1:.4f}, model saved"
                 )
+            else:
+                # 验证集没有改进
+                patience_counter += 1
+                logging.info(
+                    f"✗ Validation F1 did not improve (best: {best_val_f1:.4f}, current: {val_f1:.4f}). Patience: {patience_counter}/{patience}"
+                )
+
+                # 早停检查
+                if patience_counter >= patience:
+                    logging.info(f"\nEarly stopping triggered after {patience} epochs without improvement")
+                    break
         # 阶段结束，记录最终指标
         stage_metrics = metrics_tracker.get_all_averages()
         logging.info(f"\n{stage} training completed.")
